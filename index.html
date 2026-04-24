@@ -1,0 +1,682 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PGR User Guide — Dhwani RIS</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:#F58634; --navy:#811622; --light:#f7e2d1;
+  --green:#38a169; --yellow:#d69e2e; --red:#e53e3e;
+  --gray:#718096; --bg:#fdf4ee; --white:#fff;
+  --border:#e8ddd5; --text:#53435B;
+  --sb:#53435B; --sb-w:230px; --top:52px; --bot:60px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'Poppins',sans-serif;
+  background:var(--bg);color:var(--text);font-size:14px;}
+
+/* ── APP SHELL ── */
+.app{display:flex;height:100vh;overflow:hidden;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sb-w);flex-shrink:0;background:#a01c2b;
+  display:flex;flex-direction:column;height:100vh;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent;
+}
+.sb-head{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.sb-brand{font-size:11px;font-weight:800;color:#ffc49b;letter-spacing:.6px;margin-bottom:2px;}
+.sb-title{font-size:10px;color:rgba(255,255,255,0.38);letter-spacing:.3px;}
+.sb-prog{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.sb-prog-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.sb-prog-label{font-size:9.5px;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:.8px;}
+.sb-prog-count{font-size:9.5px;color:rgba(255,255,255,0.5);font-weight:700;}
+.sb-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;}
+.sb-fill{height:100%;background:var(--blue);border-radius:3px;transition:width .4s;}
+.sb-group-label{
+  padding:14px 16px 3px;
+  font-size:8.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+}
+.ni{
+  display:flex;align-items:center;gap:10px;padding:9px 16px;
+  cursor:pointer;border-left:3px solid transparent;
+  font-size:12.5px;color:rgba(255,255,255,0.6);
+  transition:all .15s;user-select:none;
+}
+.ni:hover{color:#fff;background:rgba(255,255,255,0.05);}
+.ni.active{color:#fff;background:rgba(245,134,52,0.25);border-left-color:var(--blue);}
+.ni .ico{font-size:15px;width:22px;text-align:center;flex-shrink:0;line-height:1;}
+.ni .lbl{flex:1;line-height:1.3;}
+.ni .ck{font-size:11px;color:#68d391;display:none;flex-shrink:0;}
+.ni.done .ck{display:block;}
+.ns{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 16px 6px 38px;cursor:pointer;
+  border-left:3px solid transparent;
+  font-size:11.5px;color:rgba(255,255,255,0.48);
+  transition:all .15s;user-select:none;
+}
+.ns:hover{color:rgba(255,255,255,0.82);background:rgba(255,255,255,0.04);}
+.ns.active{color:#fff;background:rgba(245,134,52,0.22);border-left-color:var(--blue);}
+.ns .nb{
+  width:16px;height:16px;border-radius:4px;background:rgba(255,255,255,0.1);
+  font-size:9px;font-weight:800;display:inline-flex;align-items:center;
+  justify-content:center;flex-shrink:0;color:rgba(255,255,255,0.5);
+}
+.ns.active .nb{background:var(--blue);color:#fff;}
+.ns .ck2{font-size:10px;color:#68d391;display:none;margin-left:auto;}
+.ns.done .ck2{display:block;}
+
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
+
+/* ── TOP BAR ── */
+.topbar{
+  height:var(--top);background:var(--white);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 28px;gap:14px;flex-shrink:0;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04);
+}
+.tb-title{font-size:15px;font-weight:800;color:var(--navy);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tb-counter{font-size:11px;color:var(--gray);white-space:nowrap;padding:3px 10px;background:#f7fafc;border-radius:20px;border:1px solid var(--border);}
+.tb-dots{display:flex;gap:4px;align-items:center;}
+.td{width:6px;height:6px;border-radius:50%;background:var(--border);transition:all .25s;}
+.td.done{background:#a0c4ff;}
+.td.active{background:var(--blue);width:16px;border-radius:3px;}
+
+/* ── CONTENT ── */
+.content{flex:1;overflow-y:auto;padding:28px 36px 8px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+
+/* ── BOTTOM NAV ── */
+.botnav{
+  height:var(--bot);background:var(--white);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;flex-shrink:0;
+}
+.bn{
+  display:flex;align-items:center;gap:7px;padding:8px 18px;
+  border-radius:8px;border:1.5px solid var(--border);
+  background:none;font-size:13px;font-weight:600;color:var(--gray);
+  cursor:pointer;transition:all .18s;white-space:nowrap;
+}
+.bn:hover:not(:disabled){border-color:var(--blue);color:var(--blue);background:var(--light);}
+.bn:disabled{opacity:.3;cursor:default;}
+.bn.primary{background:var(--blue);border-color:var(--blue);color:#fff;}
+.bn.primary:hover:not(:disabled){background:#0070dd;}
+.bn-mid{text-align:center;}
+.bn-mid .bm-next{font-size:11px;color:var(--gray);}
+.bn-mid .bm-label{font-size:12px;font-weight:700;color:var(--navy);}
+
+/* ── PANELS ── */
+.panel{display:none;}
+.panel.active{display:block;animation:panelIn .2s ease;}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* Panel header */
+.ph{margin-bottom:22px;}
+.ph-eye{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;}
+.ph-title{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:7px;}
+.ph-sub{font-size:13.5px;color:var(--gray);line-height:1.65;max-width:620px;}
+
+/* ── WELCOME PANEL ── */
+.hero{
+  background:linear-gradient(135deg,var(--navy) 0%,#a01c2b 100%);
+  border-radius:14px;padding:44px 48px;color:#fff;margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.hero::after{content:'';position:absolute;top:-50px;right:-50px;width:240px;height:240px;border-radius:50%;background:rgba(245,134,52,0.18);}
+.hero-eye{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;opacity:.55;margin-bottom:10px;}
+.hero-h{font-size:30px;font-weight:800;line-height:1.2;margin-bottom:10px;}
+.hero-h span{color:#ffc49b;}
+.hero-p{font-size:14px;opacity:.85;line-height:1.75;max-width:500px;margin-bottom:22px;}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.hero-pill{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:11.5px;font-weight:600;}
+
+.flow-strip{display:flex;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 16px;gap:0;overflow-x:auto;}
+.fs{flex:1;min-width:110px;text-align:center;padding:0 6px;}
+.fs .fn{width:30px;height:30px;min-width:30px;background:var(--blue);color:#fff;border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;flex-shrink:0;}
+.fs .ft{font-size:11.5px;font-weight:700;color:var(--navy);margin-bottom:3px;white-space:nowrap;}
+.fs .fsub{font-size:10.5px;color:var(--gray);white-space:nowrap;}
+.fa{font-size:16px;color:var(--blue);flex-shrink:0;padding:0 2px;margin-top:7px;align-self:flex-start;}
+
+/* ── DASHBOARD PANEL ── */
+.num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;}
+.nc{border-radius:10px;padding:15px 17px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;cursor:default;}
+.nc:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(0,0,0,0.1);}
+.nc.b{background:linear-gradient(135deg,#ebf8ff,#bee3f8);border:1px solid #bee3f8;}
+.nc.g{background:linear-gradient(135deg,#f0fff4,#c6f6d5);border:1px solid #c6f6d5;}
+.nc.r{background:linear-gradient(135deg,#fff5f5,#fed7d7);border:1px solid #fed7d7;}
+.nc.o{background:linear-gradient(135deg,#fffaf0,#feebc8);border:1px solid #feebc8;}
+.nc.p{background:linear-gradient(135deg,#faf5ff,#e9d8fd);border:1px solid #e9d8fd;}
+.nc.t{background:linear-gradient(135deg,#e6fffa,#b2f5ea);border:1px solid #b2f5ea;}
+.nc-em{position:absolute;top:11px;right:11px;font-size:20px;opacity:.25;}
+.nc-lbl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--gray);margin-bottom:5px;}
+.nc-val{font-size:28px;font-weight:800;color:var(--navy);line-height:1;}
+.nc-val.sm{font-size:17px;}
+.nc-desc{font-size:10.5px;color:var(--gray);margin-top:4px;}
+
+.chart-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cbox{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:15px;}
+.cbox.span2{grid-column:1/-1;}
+.clbl{font-size:10.5px;font-weight:700;color:#4a5568;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;}
+.cbox canvas{max-height:175px;}
+
+/* ── FORM OVERVIEW ── */
+.tab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+.tc{
+  background:var(--white);border:1.5px solid var(--border);border-radius:10px;
+  padding:15px 16px;cursor:pointer;transition:all .18s;
+  display:flex;align-items:flex-start;gap:11px;
+}
+.tc:hover{border-color:var(--blue);background:var(--light);transform:translateY(-1px);}
+.tc .tn{
+  width:28px;height:28px;background:var(--blue);color:#fff;border-radius:7px;
+  font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.tc .tt{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:2px;}
+.tc .ts{font-size:11px;color:var(--gray);line-height:1.4;}
+
+/* ── FORM TOPBAR (inside form panels) ── */
+.form-bar{
+  background:linear-gradient(90deg,var(--navy),#a01c2b);
+  border-radius:10px;padding:13px 20px;color:#fff;
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;
+}
+.fb-title{font-size:13px;font-weight:700;}
+.fb-sub{font-size:10.5px;opacity:.7;margin-top:1px;}
+.hbadge{background:#c6f6d5;color:#276749;border-radius:20px;padding:4px 13px;font-size:11.5px;font-weight:700;}
+
+/* Tab pills (which tab is active) */
+.tab-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.tp{
+  padding:5px 13px;border-radius:20px;font-size:11px;font-weight:600;
+  border:1.5px solid var(--border);color:var(--gray);background:#f7fafc;
+}
+.tp{cursor:pointer;}
+.tp.cur{background:var(--blue);color:#fff;border-color:var(--blue);}
+.ftab{display:none;}
+.ftab.active{display:block;}
+
+/* ── FIELD ROWS ── */
+.tab-intro-box{
+  background:var(--light);border-left:3px solid var(--blue);
+  border-radius:8px;padding:10px 14px;font-size:12.5px;color:#1a4a7a;
+  margin-bottom:14px;line-height:1.6;
+}
+.fr{
+  display:flex;align-items:flex-start;gap:11px;
+  padding:10px 12px;border-radius:8px;background:#f8fafc;
+  margin-bottom:6px;border:1px solid transparent;transition:border-color .15s;
+}
+.fr:hover{border-color:var(--border);}
+.fd{width:7px;height:7px;border-radius:50%;background:var(--blue);margin-top:5px;flex-shrink:0;}
+.fn{font-weight:700;color:var(--navy);min-width:185px;font-size:13px;}
+.fx{color:#4a5568;flex:1;font-size:13px;line-height:1.5;}
+.atag{font-size:9.5px;background:#c6f6d5;color:#276749;border-radius:4px;padding:1px 6px;font-weight:700;margin-left:5px;}
+
+/* ── HEALTH SCORE ── */
+.score3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0;}
+.sc{border-radius:12px;padding:24px 18px;text-align:center;}
+.sc.g{background:#f0fff4;border:2px solid #c6f6d5;}
+.sc.y{background:#fffff0;border:2px solid #fefcbf;}
+.sc.r{background:#fff5f5;border:2px solid #fed7d7;}
+.sc .sr{font-size:26px;font-weight:800;margin-bottom:5px;}
+.sc.g .sr{color:var(--green);}
+.sc.y .sr{color:var(--yellow);}
+.sc.r .sr{color:var(--red);}
+.sc .sl{font-size:14px;font-weight:700;margin-bottom:6px;}
+.sc .sd{font-size:11.5px;color:var(--gray);line-height:1.45;}
+
+/* ── SUBMIT STEPS ── */
+.steps{display:flex;flex-direction:column;gap:9px;margin:16px 0;}
+.sr-row{display:flex;gap:13px;align-items:flex-start;}
+.sl-l{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.snum{width:34px;height:34px;background:var(--blue);color:#fff;border-radius:50%;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sline{width:2px;flex:1;background:var(--border);margin:3px 0;min-height:16px;}
+.sr-row:last-child .sline{display:none;}
+.sb2{flex:1;background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:11px 15px;font-size:13.5px;color:#4a5568;}
+.sb2 strong{color:var(--navy);}
+
+/* ── CALLOUT ── */
+.cl{border-radius:8px;padding:11px 14px;font-size:13px;margin:14px 0;display:flex;gap:9px;align-items:flex-start;}
+.cl.warn{background:#fffbeb;border-left:4px solid #f6ad55;color:#744210;}
+.cl.info{background:var(--light);border-left:4px solid var(--blue);color:#1a4a7a;}
+.cl-i{font-size:15px;flex-shrink:0;}
+
+/* ── DONE PANEL ── */
+.done-hero{text-align:center;padding:40px 20px;}
+.done-icon{font-size:64px;margin-bottom:20px;}
+.done-title{font-size:28px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+.done-sub{font-size:14px;color:var(--gray);line-height:1.7;max-width:480px;margin:0 auto;}
+
+/* ── SPOTLIGHT TOUR ── */
+@keyframes trFadeIn  { from{opacity:0} to{opacity:1} }
+@keyframes trFadeOut { from{opacity:1} to{opacity:0} }
+@keyframes tipIn     { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+#tr-overlay{
+  position:fixed;inset:0;z-index:800;pointer-events:all;
+  display:none;
+}
+#tr-overlay.on{ display:block; }
+
+#tr-ring{
+  position:fixed;z-index:810;pointer-events:none;border-radius:10px;
+  border:2.5px solid rgba(245,134,52,0.9);
+  box-shadow:0 0 0 9999px rgba(50,10,15,0.76),0 0 0 5px rgba(245,134,52,0.2),0 4px 24px rgba(245,134,52,0.3);
+  opacity:0;transition:top .4s cubic-bezier(.4,0,.2,1),left .4s cubic-bezier(.4,0,.2,1),
+    width .4s cubic-bezier(.4,0,.2,1),height .4s cubic-bezier(.4,0,.2,1),opacity .25s;
+}
+#tr-ring.show{opacity:1;}
+
+#tr-tip{
+  position:fixed;z-index:820;width:300px;
+  background:#fff;border-radius:13px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.22),0 0 0 1px rgba(0,0,0,0.06);
+  opacity:0;pointer-events:none;
+  transition:opacity .25s,top .4s cubic-bezier(.4,0,.2,1),left .4s cubic-bezier(.4,0,.2,1);
+}
+#tr-tip.show{opacity:1;pointer-events:all;animation:tipIn .25s ease;}
+#tr-tip::after{
+  content:'';position:absolute;width:11px;height:11px;background:#fff;transform:rotate(45deg);
+}
+#tr-tip.arr-top::after{top:-5px;left:22px;box-shadow:-1px -1px 0 rgba(0,0,0,0.06);}
+#tr-tip.arr-bot::after{bottom:-5px;left:22px;box-shadow:2px 2px 0 rgba(0,0,0,0.06);}
+#tr-tip.arr-right::after{top:16px;right:-5px;box-shadow:2px -1px 0 rgba(0,0,0,0.06);}
+
+.tr-inner{padding:16px 18px 12px;}
+.tr-tag{font-size:9.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--blue);margin-bottom:4px;}
+.tr-title{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:5px;}
+.tr-body{font-size:12.5px;color:#4a5568;line-height:1.6;}
+.tr-bar{border-top:1px solid var(--border);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;}
+.tr-dots{display:flex;gap:5px;align-items:center;}
+.trd{width:6px;height:6px;border-radius:50%;background:var(--border);transition:all .25s;}
+.trd.done{background:#a0c4ff;}
+.trd.cur{background:var(--blue);width:16px;border-radius:3px;}
+.tr-btns{display:flex;gap:8px;align-items:center;}
+.tr-exit{font-size:11px;color:var(--gray);background:none;border:none;cursor:pointer;padding:2px 0;}
+.tr-exit:hover{color:var(--navy);}
+.tr-next{background:var(--blue);color:#fff;border:none;padding:6px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;transition:background .18s,transform .12s;}
+.tr-next:hover{background:#0070dd;transform:translateY(-1px);}
+
+/* Tour launch button in sidebar */
+.sb-tour-btn{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 16px;margin:0;border-radius:0;
+  background:rgba(245,134,52,0.12);border:none;
+  border-left:3px solid rgba(245,134,52,0.6);
+  color:#ffc49b;font-size:12.5px;font-weight:700;cursor:pointer;
+  width:100%;text-align:left;transition:all .18s;
+}
+.sb-tour-btn .ico{font-size:15px;width:22px;text-align:center;flex-shrink:0;line-height:1;}
+.sb-tour-btn:hover{background:rgba(245,134,52,0.22);color:#fff;}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ════════════════ SIDEBAR ════════════════ -->
+<aside class="sidebar">
+  <div class="sb-head">
+    <img src="data:image/png;base64,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" alt="Dhwani RIS" style="height:32px;margin-bottom:8px;filter:brightness(0) invert(1);">
+    <div class="sb-title">PGR User Guide</div>
+  </div>
+  <div class="sb-prog">
+    <div class="sb-prog-row">
+      <span class="sb-prog-label">Progress</span>
+      <span class="sb-prog-count" id="sb-count">1 / 5</span>
+    </div>
+    <div class="sb-bar"><div class="sb-fill" id="sb-fill" style="width:20%"></div></div>
+  </div>
+
+  <div class="sb-group-label">Getting Started</div>
+  <div class="ni" data-p="0" onclick="goTo(0)"><span class="ico">👋</span><span class="lbl">Welcome</span><span class="ck">✓</span></div>
+  <button class="sb-tour-btn" onclick="tourStart()"><span class="ico">🎯</span><span>Take the Walkthrough</span></button>
+
+  <div class="sb-group-label">Guide</div>
+  <div class="ni" data-p="1" onclick="goTo(1)"><span class="ico">📊</span><span class="lbl">Dashboard</span><span class="ck">✓</span></div>
+  <div class="ni" data-p="2" onclick="goTo(2)"><span class="ico">📝</span><span class="lbl">The Form</span><span class="ck">✓</span></div>
+  <div class="ni" data-p="3" onclick="goTo(3)"><span class="ico">❤️</span><span class="lbl">Health Score</span><span class="ck">✓</span></div>
+  <div class="ni" data-p="4" onclick="goTo(4)"><span class="ico">✅</span><span class="lbl">Submitting</span><span class="ck">✓</span></div>
+</aside>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<div class="main">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="tb-title" id="tb-title">Welcome</div>
+    <div class="tb-dots" id="tb-dots"></div>
+    <div class="tb-counter" id="tb-counter">1 / 5</div>
+  </header>
+
+  <!-- Content -->
+  <div class="content" id="content">
+
+    <!-- ── P0: WELCOME ── -->
+    <div class="panel active" id="p0">
+      <div class="hero">
+        <div class="hero-eye">Internal Tool · For Project Managers</div>
+        <div class="hero-h">Project Governance <span>Review</span></div>
+        <div class="hero-p">A monthly health check for your project. Fill one form per project, once a month. The system scores it and feeds the leadership dashboard automatically.</div>
+        <div class="hero-pills">
+          <span class="hero-pill">📅 Monthly — one form per project</span>
+          <span class="hero-pill">⏱ 5–10 minutes to fill</span>
+          <span class="hero-pill">📊 Auto health score</span>
+          <span class="hero-pill">🔒 Submit once per month</span>
+        </div>
+      </div>
+      <div class="flow-strip">
+        <div class="fs"><div class="fn">1</div><div class="ft">Open the Form</div><div class="fsub">PGR → New</div></div>
+        <div class="fa">›</div>
+        <div class="fs"><div class="fn">2</div><div class="ft">Fill 6 Tabs</div><div class="fsub">5–10 min</div></div>
+        <div class="fa">›</div>
+        <div class="fs"><div class="fn">3</div><div class="ft">Save Draft</div><div class="fsub">Edit anytime</div></div>
+        <div class="fa">›</div>
+        <div class="fs"><div class="fn">4</div><div class="ft">Submit</div><div class="fsub">Goes live</div></div>
+        <div class="fa">›</div>
+        <div class="fs"><div class="fn">5</div><div class="ft">Manager Reviews</div><div class="fsub">Gets notified</div></div>
+      </div>
+    </div>
+
+    <!-- ── P1: DASHBOARD ── -->
+    <div class="panel" id="p1">
+      <div class="ph">
+        <div class="ph-eye">Dashboard</div>
+        <div class="ph-title">The Dashboard</div>
+        <div class="ph-sub">Navigate to <strong>Project Governance</strong> in the sidebar. Auto-updated each time a PM submits a review. Live data — April 2026.</div>
+      </div>
+      <div class="num-grid">
+        <div class="nc b"><div class="nc-em">📁</div><div class="nc-lbl">Active Projects</div><div class="nc-val">10</div><div class="nc-desc">Reviews submitted this month</div></div>
+        <div class="nc g"><div class="nc-em">💚</div><div class="nc-lbl">Avg Health Score</div><div class="nc-val">54</div><div class="nc-desc">Across all active projects</div></div>
+        <div class="nc r"><div class="nc-em">⚠️</div><div class="nc-lbl">At Risk / Critical</div><div class="nc-val">3</div><div class="nc-desc">Projects scoring below 50</div></div>
+        <div class="nc o"><div class="nc-em">🚨</div><div class="nc-lbl">Active Escalations</div><div class="nc-val">1</div><div class="nc-desc">Open client escalations</div></div>
+        <div class="nc p"><div class="nc-em">💰</div><div class="nc-lbl">Total FY Revenue</div><div class="nc-val sm">₹ Contracted</div><div class="nc-desc">Sum across all projects</div></div>
+        <div class="nc t"><div class="nc-em">✅</div><div class="nc-lbl">Avg SETU Compliance</div><div class="nc-val">67%</div><div class="nc-desc">Average across projects</div></div>
+      </div>
+      <div class="chart-2">
+        <div class="cbox span2"><div class="clbl">Health Score by Project</div><canvas id="cHealth"></canvas></div>
+        <div class="cbox"><div class="clbl">Project Status</div><canvas id="cStatus"></canvas></div>
+        <div class="cbox"><div class="clbl">AI Maturity</div><canvas id="cAI"></canvas></div>
+        <div class="cbox"><div class="clbl">Schedule Confidence</div><canvas id="cSched"></canvas></div>
+        <div class="cbox"><div class="clbl">Team Morale</div><canvas id="cMorale"></canvas></div>
+      </div>
+      <div class="cl info" style="margin-top:14px;"><span class="cl-i">ℹ️</span><span>Dashboard only shows <strong>submitted</strong> reviews. Saved drafts do not appear.</span></div>
+    </div>
+
+    <!-- ── P2: THE FORM (all 6 tabs inline) ── -->
+    <div class="panel" id="p2">
+      <div class="ph">
+        <div class="ph-eye">The Form</div>
+        <div class="ph-title">Filling the Form</div>
+        <div class="ph-sub">Go to <strong>Project Governance Review → New</strong>. Fill all 6 tabs in order. Click a tab below to see its fields.</div>
+      </div>
+      <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">💡</span><span>Most fields are <strong>auto-populated</strong> from your project records — just verify and fill the narrative fields.</span></div>
+
+      <div class="form-bar">
+        <div><div class="fb-title">Project Governance Review — April 2026</div><div class="fb-sub">New Form</div></div>
+        <span class="hbadge">🟢 Health: 88</span>
+      </div>
+
+      <!-- Internal tab switcher -->
+      <div class="tab-pills" id="ftabs">
+        <span class="tp cur" onclick="showFTab(0,this)">1 · Overview</span>
+        <span class="tp" onclick="showFTab(1,this)">2 · Delivery</span>
+        <span class="tp" onclick="showFTab(2,this)">3 · SETU</span>
+        <span class="tp" onclick="showFTab(3,this)">4 · AI</span>
+        <span class="tp" onclick="showFTab(4,this)">5 · Client</span>
+        <span class="tp" onclick="showFTab(5,this)">6 · Assessment</span>
+      </div>
+
+      <div class="ftab active" id="ft0">
+        <div class="tab-intro-box">Basic project snapshot. Most fields auto-fill from your project record — just verify before moving on.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">Project</div><div class="fx">Select your project — links this review to the project record</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Review Month / Year</div><div class="fx">Auto-filled to current month <span class="atag">auto</span> — change only for back-dated entries</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Project Status</div><div class="fx"><strong>On Track</strong> / <strong>At Risk</strong> / <strong>Critical</strong> / <strong>On Hold</strong></div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">% Work Done</div><div class="fx">Overall project completion percentage</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Budget &amp; FY Revenue</div><div class="fx">Auto-populated <span class="atag">auto</span> — adjust only if figures have changed</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Tech Lead / Team</div><div class="fx">Auto-populated <span class="atag">auto</span> — verify the names are correct</div></div>
+      </div>
+      <div class="ftab" id="ft1">
+        <div class="tab-intro-box">What got done and what's at risk. Write in plain language — this is what leadership reads.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">Work Done This Month</div><div class="fx">Brief description of deliverables — 2–3 sentences</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Planned vs Actual</div><div class="fx">Are you on schedule? Describe any gaps</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Schedule Confidence</div><div class="fx">High / Medium / Low — how confident about upcoming timelines</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Key Risks</div><div class="fx">Active risks the project is facing</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Upcoming Milestones</div><div class="fx">Major deliverables or deadlines next month</div></div>
+      </div>
+      <div class="ftab" id="ft2">
+        <div class="tab-intro-box">Internal process compliance checklist. Answer each item <strong>Yes / No / NA</strong>. Compliance % is calculated automatically.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">SETU Checklist Items</div><div class="fx">Yes = compliant, No = not compliant, NA = doesn't apply to this project</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">SETU Compliance %</div><div class="fx">Calculated from your Yes / No answers <span class="atag">auto</span></div></div>
+        <div class="cl warn"><span class="cl-i">⚠️</span><span>NA is not the same as No — marking NA does not hurt your compliance score.</span></div>
+      </div>
+      <div class="ftab" id="ft3">
+        <div class="tab-intro-box">AI tool usage on your project. <strong>AI Maturity Level</strong> (1–5) is calculated automatically.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Tools Used by PM</div><div class="fx">e.g. Claude, ChatGPT, Cursor, Copilot</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Tools Used by Team</div><div class="fx">Tools the delivery team uses regularly</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">% of Team Using AI</div><div class="fx">Select closest bracket — 0–25%, 25–50%, 50–75%, 75–100%</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Used For</div><div class="fx">Code Generation, Documentation, Testing, Analysis, etc.</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Impact Rating</div><div class="fx">1 (no impact) to 5 (significant impact)</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Maturity Level</div><div class="fx">Derived from your answers above <span class="atag">auto</span></div></div>
+      </div>
+      <div class="ftab" id="ft4">
+        <div class="tab-intro-box">Client relationship and team health. Be honest — this is how leadership decides where to send support.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">Client Satisfaction</div><div class="fx">1 (very dissatisfied) to 5 (very satisfied)</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Client Escalation</div><div class="fx">Yes or No — if Yes, describe the escalation</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Team Morale</div><div class="fx">High / Medium / Low</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Team Challenges</div><div class="fx">Blockers, capacity issues, or concerns</div></div>
+      </div>
+      <div class="ftab" id="ft5">
+        <div class="tab-intro-box">Your overall read of the month. The most-read section after the health score.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">Key Achievements</div><div class="fx">Wins, milestones hit, positive feedback this month</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Action Items</div><div class="fx">What needs to happen next month</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">PM Notes</div><div class="fx">Anything else leadership should know</div></div>
+      </div>
+    </div>
+
+    <!-- ── P3: HEALTH SCORE ── -->
+    <div class="panel" id="p3">
+      <div class="ph">
+        <div class="ph-eye">Understanding</div>
+        <div class="ph-title">Health Score</div>
+        <div class="ph-sub">Calculated automatically on save. Shown as a badge at the top of the form. <strong>You cannot edit it</strong> — it reflects your inputs honestly.</div>
+      </div>
+      <div class="score3">
+        <div class="sc g"><div class="sr">75–100</div><div class="sl">🟢 Healthy</div><div class="sd">Project is on track. Keep going.</div></div>
+        <div class="sc y"><div class="sr">50–74</div><div class="sl">🟡 At Risk</div><div class="sd">Some areas need attention. Review with your manager.</div></div>
+        <div class="sc r"><div class="sr">0–49</div><div class="sl">🔴 Critical</div><div class="sd">Immediate action required. Escalates to leadership.</div></div>
+      </div>
+      <div class="cl info"><span class="cl-i">ℹ️</span><span>Score is derived from Project Status, Schedule Confidence, Client Satisfaction, SETU Compliance, and Team Morale. Fill all fields honestly for an accurate score.</span></div>
+    </div>
+
+    <!-- ── P4: SUBMITTING ── -->
+    <div class="panel" id="p4">
+      <div class="ph">
+        <div class="ph-eye">Final Step</div>
+        <div class="ph-title">Submitting</div>
+        <div class="ph-sub">Once all 6 tabs are filled, submit to lock the review and publish to the leadership dashboard.</div>
+      </div>
+      <div class="steps">
+        <div class="sr-row"><div class="sl-l"><div class="snum">1</div><div class="sline"></div></div><div class="sb2"><strong>Save</strong> at any point — stores a draft, not visible on dashboard yet</div></div>
+        <div class="sr-row"><div class="sl-l"><div class="snum">2</div><div class="sline"></div></div><div class="sb2">Review all <strong>6 tabs</strong> and verify everything looks accurate</div></div>
+        <div class="sr-row"><div class="sl-l"><div class="snum">3</div><div class="sline"></div></div><div class="sb2">Click <strong>Submit</strong> — review locks and appears on the dashboard immediately</div></div>
+        <div class="sr-row"><div class="sl-l"><div class="snum">4</div><div class="sline"></div></div><div class="sb2">Your <strong>reporting manager</strong> is notified for sign-off</div></div>
+      </div>
+      <div class="cl warn"><span class="cl-i">⚠️</span><span><strong>Once per project per month only.</strong> To correct after submitting, ask your manager to cancel it.</span></div>
+      <div style="margin-top:16px;text-align:center;padding:18px;background:#f8fafc;border-radius:10px;border:1px solid var(--border);">
+        <div style="font-size:11px;color:var(--gray);margin-bottom:3px;">Need help?</div>
+        <div style="font-size:13px;color:var(--navy);font-weight:700;"><strong>Ankit Jangir</strong> (IT) &nbsp;·&nbsp; <strong>Ravi Jangir</strong> (Operations)</div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- Bottom nav -->
+  <div class="botnav">
+    <button class="bn" id="btn-prev" onclick="goTo(cur-1)" disabled>← Previous</button>
+    <div class="bn-mid"><div class="bm-next" id="bn-next-label">Up next</div><div class="bm-label" id="bn-next-name">Dashboard</div></div>
+    <button class="bn primary" id="btn-next" onclick="goTo(cur+1)">Next &nbsp;→</button>
+  </div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ── TOUR ELEMENTS ── -->
+<div id="tr-overlay"></div>
+<div id="tr-ring"></div>
+<div id="tr-tip">
+  <div class="tr-inner">
+    <div class="tr-tag"   id="tr-tag"></div>
+    <div class="tr-title" id="tr-title"></div>
+    <div class="tr-body"  id="tr-body"></div>
+  </div>
+  <div class="tr-bar">
+    <div class="tr-dots" id="tr-dots"></div>
+    <div class="tr-btns">
+      <button class="tr-exit" onclick="tourStop()">Exit tour</button>
+      <button class="tr-next" id="tr-next-btn" onclick="tourNext()">Next &nbsp;›</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PANELS = [
+  { title:'Welcome',    eye:'Getting Started' },
+  { title:'Dashboard',  eye:'Live Data' },
+  { title:'The Form',   eye:'6 Tabs' },
+  { title:'Health Score', eye:'Understanding Your Score' },
+  { title:'Submitting', eye:'Final Step' },
+];
+let cur = 0;
+const visited = new Set([0]);
+let chartsReady = false;
+
+// Internal form tab switcher
+function showFTab(n, btn) {
+  document.querySelectorAll('.ftab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('#ftabs .tp').forEach(el => el.classList.remove('cur'));
+  document.getElementById('ft'+n).classList.add('active');
+  btn.classList.add('cur');
+}
+
+function goTo(idx) {
+  if (idx < 0 || idx >= PANELS.length) return;
+  document.getElementById('p'+cur).classList.remove('active');
+  cur = idx;
+  visited.add(cur);
+  document.getElementById('p'+cur).classList.add('active');
+  document.getElementById('content').scrollTop = 0;
+  _updateUI();
+  if (cur === 1 && !chartsReady) { chartsReady = true; setTimeout(initCharts, 60); }
+}
+
+function _updateUI() {
+  document.getElementById('tb-title').textContent   = PANELS[cur].title;
+  document.getElementById('tb-counter').textContent = (cur+1)+' / '+PANELS.length;
+  document.getElementById('tb-dots').innerHTML = PANELS.map((_,i)=>
+    `<div class="td ${i<cur?'done':i===cur?'active':''}"></div>`).join('');
+  const pct = Math.round((visited.size / PANELS.length) * 100);
+  document.getElementById('sb-fill').style.width = pct+'%';
+  document.getElementById('sb-count').textContent = visited.size+' / '+PANELS.length;
+  document.querySelectorAll('[data-p]').forEach(el => {
+    const i = parseInt(el.dataset.p);
+    el.classList.toggle('active', i === cur);
+    el.classList.toggle('done',   i !== cur && visited.has(i));
+  });
+  document.getElementById('btn-prev').disabled = cur === 0;
+  const nBtn = document.getElementById('btn-next');
+  const nLbl = document.getElementById('bn-next-label');
+  const nNm  = document.getElementById('bn-next-name');
+  if (cur === PANELS.length - 1) {
+    nBtn.innerHTML = '✓ All Done';
+    nBtn.onclick = () => alert('You have completed the PGR guide. You are ready to fill your first review!');
+    nLbl.textContent = '';
+    nNm.textContent  = 'Guide complete';
+  } else {
+    nBtn.innerHTML = 'Next &nbsp;→';
+    nBtn.onclick = () => goTo(cur + 1);
+    nLbl.textContent = 'Up next';
+    nNm.textContent  = PANELS[cur+1].title;
+  }
+}
+
+function initCharts() {
+  const scores = [88,80,76,63,60,50,50,43,21,9];
+  new Chart(document.getElementById('cHealth'),{type:'bar',data:{labels:['QSure','AM Foundation','Office Admin','Piramal-ESIC','ATMA-MIS','General','Swapdan','CSR INOPS','Samarth Agri','BEAM Farmer'],datasets:[{data:scores,backgroundColor:scores.map(v=>v>=75?'#68d391':v>=50?'#f6e05e':'#fc8181'),borderRadius:5}]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:'#f0f4f8'},max:100}}}});
+  const doOpts={plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:11,padding:8}}},cutout:'58%'};
+  new Chart(document.getElementById('cStatus'),{type:'doughnut',data:{labels:['On Track','At Risk','Needs Attention','Critical','On Hold'],datasets:[{data:[4,2,2,1,1],backgroundColor:['#68d391','#f6e05e','#f6ad55','#fc8181','#a0aec0'],borderWidth:2,borderColor:'#fff'}]},options:doOpts});
+  new Chart(document.getElementById('cAI'),{type:'doughnut',data:{labels:['Level 1','Level 2','Level 3'],datasets:[{data:[7,2,1],backgroundColor:['#bee3f8','#4299e1','#2b6cb0'],borderWidth:2,borderColor:'#fff'}]},options:doOpts});
+  new Chart(document.getElementById('cSched'),{type:'doughnut',data:{labels:['On Track','At Risk','Delayed'],datasets:[{data:[5,3,2],backgroundColor:['#68d391','#f6e05e','#fc8181'],borderWidth:2,borderColor:'#fff'}]},options:doOpts});
+  new Chart(document.getElementById('cMorale'),{type:'doughnut',data:{labels:['Good','Okay','Low'],datasets:[{data:[4,4,2],backgroundColor:['#68d391','#f6e05e','#fc8181'],borderWidth:2,borderColor:'#fff'}]},options:doOpts});
+}
+
+// ── SPOTLIGHT TOUR ──
+const TOUR = [
+  { sel:'.sidebar',  title:'Your Navigation',       body:'5 sections — click any to jump directly. Checkmarks appear as you visit each one.',                                           arrow:'arr-right', side:'right'  },
+  { sel:'.sb-prog',  title:'Your Progress',         body:'Fills as you explore. Shows how many of the 5 sections you have visited.',                                                   arrow:'arr-right', side:'right'  },
+  { sel:'.topbar',   title:'Top Bar',               body:'Always shows your current section name and your position in the guide (e.g. 2 / 5).',                                        arrow:'arr-top',   side:'below'  },
+  { sel:'.content',  title:'Content Area',          body:'One topic at a time — no scrolling to navigate. On The Form page, use the tab buttons inside to switch between all 6 tabs.', arrow:'arr-bot',   side:'above'  },
+  { sel:'.botnav',   title:'Previous & Next',       body:'Step through in order. The centre label always previews where Next takes you before you click.',                              arrow:'arr-bot',   side:'above'  },
+];
+
+let trIdx = 0;
+
+function tourStart() {
+  goTo(0);
+  document.getElementById('tr-overlay').classList.add('on');
+  document.getElementById('tr-ring').classList.add('show');
+  document.getElementById('tr-tip').classList.add('show');
+  trIdx = 0;
+  _trRender();
+}
+function tourNext() {
+  trIdx++;
+  if (trIdx >= TOUR.length) { tourStop(); return; }
+  _trRender();
+}
+function tourStop() {
+  document.getElementById('tr-overlay').classList.remove('on');
+  document.getElementById('tr-ring').classList.remove('show');
+  document.getElementById('tr-tip').classList.remove('show');
+}
+function _trRender() {
+  const s = TOUR[trIdx];
+  const el = document.querySelector(s.sel);
+  if (!el) { tourNext(); return; }
+  document.getElementById('tr-dots').innerHTML = TOUR.map((_,i)=>
+    `<div class="trd ${i<trIdx?'done':i===trIdx?'cur':''}"></div>`).join('');
+  document.getElementById('tr-tag').textContent   = `Step ${trIdx+1} of ${TOUR.length}`;
+  document.getElementById('tr-title').textContent = s.title;
+  document.getElementById('tr-body').textContent  = s.body;
+  document.getElementById('tr-next-btn').innerHTML = trIdx===TOUR.length-1?'Done &nbsp;✓':'Next &nbsp;›';
+  setTimeout(() => _trPos(el, s), 80);
+}
+function _trPos(el, s) {
+  const P=8, r=el.getBoundingClientRect();
+  const rg=document.getElementById('tr-ring');
+  rg.style.top=(r.top-P)+'px'; rg.style.left=(r.left-P)+'px';
+  rg.style.width=(r.width+P*2)+'px'; rg.style.height=(r.height+P*2)+'px';
+  const tip=document.getElementById('tr-tip'), TW=300, TH=200, M=14;
+  tip.className='show '+s.arrow;
+  let top,left;
+  if(s.side==='right'){top=r.top;left=r.right+P+12;}
+  else if(s.side==='below'){top=r.bottom+P+10;left=Math.max(M,Math.min(r.left,window.innerWidth-TW-M));}
+  else{top=r.top-P-TH-10;left=Math.max(M,Math.min(r.left,window.innerWidth-TW-M));}
+  // Clamp to viewport so tip never disappears off-screen
+  top  = Math.max(M, Math.min(top,  window.innerHeight - TH - M));
+  left = Math.max(M, Math.min(left, window.innerWidth  - TW - M));
+  tip.style.top=top+'px'; tip.style.left=left+'px';
+}
+
+// Init — start tour automatically on load
+_updateUI();
+window.addEventListener('load', () => setTimeout(tourStart, 400));
+</script>
+</body>
+</html>
+

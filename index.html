@@ -362,6 +362,7 @@ body{font-family:'Poppins',sans-serif;
   <div class="ni" data-p="2" onclick="goTo(2)"><span class="ico">📝</span><span class="lbl">The Form</span><span class="ck">✓</span></div>
   <div class="ni" data-p="3" onclick="goTo(3)"><span class="ico">❤️</span><span class="lbl">Health Score</span><span class="ck">✓</span></div>
   <div class="ni" data-p="4" onclick="goTo(4)"><span class="ico">✅</span><span class="lbl">Submitting</span><span class="ck">✓</span></div>
+  <div class="ni" data-p="5" onclick="goTo(5)"><span class="ico">🚨</span><span class="lbl">Non-Negotiables</span><span class="ck">✓</span></div>
 </aside>
 
 <!-- ════════════════ MAIN ════════════════ -->
@@ -673,10 +674,119 @@ body{font-family:'Poppins',sans-serif;
         </div>
       </div>
 
-      <div class="cl warn" style="margin-top:14px;"><span class="cl-i">⚠️</span><span><strong>Once per project per month only.</strong> To correct after submitting, ask your manager to cancel it.</span></div>
+      <div class="cl info" style="margin-top:14px;"><span class="cl-i">ℹ️</span><span>All mandatory fields are listed in the <strong>Non-Negotiables</strong> section → last item in the sidebar.</span></div>
+
+      <div class="cl warn" style="margin-top:10px;"><span class="cl-i">⚠️</span><span><strong>Once per project per month only.</strong> To correct after submitting, ask your manager to cancel it.</span></div>
       <div style="margin-top:16px;text-align:center;padding:18px;background:#f8fafc;border-radius:10px;border:1px solid var(--border);">
         <div style="font-size:11px;color:var(--gray);margin-bottom:3px;">Need help?</div>
         <div style="font-size:13px;color:var(--navy);font-weight:700;"><strong>Ankit Jangir</strong> (IT) &nbsp;·&nbsp; <strong>Ravi Jangir</strong> (Operations)</div>
+      </div>
+    </div>
+
+    <!-- ── P5: NON-NEGOTIABLES ── -->
+    <div class="panel" id="p5">
+      <div class="ph">
+        <div class="ph-eye">Watch List</div>
+        <div class="ph-title">Non-Negotiables</div>
+        <div class="ph-sub">Two things to know: the fields the system will block you on at submission, and the report that flags at-risk projects for leadership review.</div>
+      </div>
+
+      <!-- Non-Negotiable Report -->
+      <div style="margin-bottom:20px;">
+        <div class="clbl" style="margin-bottom:10px;">The Non-Negotiable Report</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Accessible via the <strong>Non-Negotiable</strong> shortcut on the Project Governance workspace. Leadership uses this to spot projects that need immediate attention.</span></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:auto 1fr;font-size:12.5px;">
+            <div style="padding:10px 14px;background:#fef2f2;border-bottom:1px solid var(--border);font-weight:700;color:#991b1b;">🔴 Flag</div>
+            <div style="padding:10px 14px;background:#fef2f2;border-bottom:1px solid var(--border);font-weight:700;color:#991b1b;">What it means</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600;color:#374151;">Open Bugs &gt; 0</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">Project has critical bugs logged — must be resolved or acknowledged.</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600;color:#374151;">AI Adoption &lt; 25%</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">Fewer than 25% of the team are using AI regularly — adoption target not met.</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600;color:#374151;">Client Interaction &gt; 1 month</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">No recorded client interaction in over a month — relationship at risk.</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600;color:#374151;">Client Perception = Bad</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">PM has rated client sentiment as Bad — escalation risk.</div>
+            <div style="padding:9px 14px;font-weight:600;color:#374151;">Contract Expiring ≤ 60 days</div>
+            <div style="padding:9px 14px;color:#4a5568;">Project end date is within 60 days — renewal or closure action required.</div>
+          </div>
+        </div>
+        <div class="cl warn" style="margin-top:10px;"><span class="cl-i">⚠️</span><span>Only projects with <strong>at least one flag</strong> appear in this report. Zero-flag projects are excluded. The report is sorted by total flags — highest risk first.</span></div>
+      </div>
+
+      <!-- Mandatory fields by tab -->
+      <div>
+        <div class="clbl" style="margin-bottom:10px;">Mandatory Fields Before Submission</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>These fields are enforced at Submit. You can save a draft with any subset, but the form will not submit until all of these are filled.</span></div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+          <!-- Delivery -->
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div class="clbl" style="margin-bottom:8px;">📦 Delivery Tab</div>
+            <ul style="padding-left:16px;color:#4a5568;line-height:2;">
+              <li>Schedule Confidence</li>
+              <li>Scope Changes this Month</li>
+            </ul>
+          </div>
+          <!-- SETU -->
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div class="clbl" style="margin-bottom:8px;">✅ SETU Tab</div>
+            <div style="font-size:11.5px;color:#6b7280;margin-bottom:6px;">Service projects (9 fields):</div>
+            <ul style="padding-left:16px;color:#4a5568;line-height:1.7;font-size:11.5px;margin-bottom:8px;">
+              <li>Kick-off, Stakeholder Mapping, Solution Doc</li>
+              <li>Risk Register, Project Plan, Support Desk</li>
+              <li>Go-Live Checklist, Satisfaction Survey, Steerco</li>
+            </ul>
+            <div style="font-size:11.5px;color:#6b7280;margin-bottom:4px;">Product projects — MGRANT / MFORM (4 fields):</div>
+            <ul style="padding-left:16px;color:#4a5568;line-height:1.7;font-size:11.5px;">
+              <li>Steerco, Risk Register, Project Plan, Support Desk</li>
+            </ul>
+          </div>
+          <!-- AI -->
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div class="clbl" style="margin-bottom:8px;">🤖 AI Tab</div>
+            <ul style="padding-left:16px;color:#4a5568;line-height:1.8;font-size:12px;">
+              <li>AI Tools Used by PM</li>
+              <li>AI Tools Used by Team</li>
+              <li>% of Team Using AI Regularly</li>
+              <li>AI Used For</li>
+              <li>AI Effectiveness</li>
+              <li>AI Output Code Quality</li>
+              <li>AI Adoption Effort by PM</li>
+              <li>AI-Generated Code Reviewed Before Commit?</li>
+              <li>Sensitive Data Shared with AI?</li>
+            </ul>
+          </div>
+          <!-- Client -->
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div class="clbl" style="margin-bottom:8px;">🤝 Client Tab</div>
+            <ul style="padding-left:16px;color:#4a5568;line-height:1.8;font-size:12px;">
+              <li>Client Nature</li>
+              <li>Client Perception</li>
+              <li>Any Escalation from Client?</li>
+              <li>Team Morale</li>
+              <li>Attrition Risk</li>
+              <li>Resource Requirement?</li>
+            </ul>
+            <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11.5px;color:#6b7280;">
+              <strong style="color:#374151;">Conditional:</strong> Escalation Details + Action Taken (if Escalation = Yes) · Attrition Details (if Risk ≠ None) · Resource Type (if Requirement = Yes)
+            </div>
+          </div>
+          <!-- Assessment -->
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;grid-column:1/-1;">
+            <div class="clbl" style="margin-bottom:8px;">📋 Assessment Tab</div>
+            <div style="display:flex;gap:24px;flex-wrap:wrap;">
+              <div style="color:#4a5568;">• Overall Status of Project</div>
+              <div style="color:#4a5568;">• Top Risk This Month</div>
+              <div style="color:#4a5568;">• Review Meeting Points / Actionable</div>
+            </div>
+          </div>
+          <!-- Deliverables -->
+          <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px;grid-column:1/-1;">
+            <div class="clbl" style="margin-bottom:6px;color:#92400e;">⚠️ Deliverables (any tab)</div>
+            <div style="font-size:12.5px;color:#4a5568;">At least <strong>one deliverable row</strong> must have <strong>Applicable = Yes</strong>. A review with all deliverables marked N/A will be blocked at submission.</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -717,6 +827,7 @@ const PANELS = [
   { title:'The Form',   eye:'6 Tabs' },
   { title:'Health Score', eye:'Understanding Your Score' },
   { title:'Submitting', eye:'Final Step' },
+  { title:'Non-Negotiables', eye:'Watch List' },
 ];
 let cur = 0;
 const visited = new Set([0]);

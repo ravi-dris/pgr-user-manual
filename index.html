@@ -425,7 +425,73 @@ body{font-family:'Poppins',sans-serif;
         <div class="cbox"><div class="clbl">Schedule Confidence</div><canvas id="cSched"></canvas></div>
         <div class="cbox"><div class="clbl">Team Morale</div><canvas id="cMorale"></canvas></div>
       </div>
-      <div class="cl info" style="margin-top:14px;"><span class="cl-i">ℹ️</span><span>Dashboard only shows <strong>submitted</strong> reviews. Saved drafts do not appear.</span></div>
+      <div class="cl warn" style="margin-top:14px;"><span class="cl-i">⚠️</span><span><strong>Submitted reviews only.</strong> The KPI cards and all charts above reflect only reviews that have been submitted. Saved drafts are invisible to the dashboard until submitted.</span></div>
+
+      <!-- Project Intelligence table -->
+      <div style="margin-top:22px;">
+        <div class="clbl" style="margin-bottom:12px;">Project Intelligence Workspace</div>
+        <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">ℹ️</span><span>This table lists every project with a submitted review. Each row shows live metrics pulled from the latest submitted review for that project.</span></div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+            <thead>
+              <tr style="background:#f7fafc;text-transform:uppercase;font-size:10px;letter-spacing:.6px;color:var(--gray);">
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Project</th>
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Health</th>
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Status</th>
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Escalation</th>
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">SETU</th>
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">PM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:9px 12px;font-weight:600;color:var(--navy);">QSure</td>
+                <td style="padding:9px 12px;"><span style="background:#c6f6d5;color:#276749;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">88</span></td>
+                <td style="padding:9px 12px;color:#276749;font-weight:600;">On Track</td>
+                <td style="padding:9px 12px;"><span style="background:#c6f6d5;color:#276749;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">No</span></td>
+                <td style="padding:9px 12px;color:#276749;font-weight:600;">&#10003; 9/9</td>
+                <td style="padding:9px 12px;color:#4a5568;">Priya S.</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;">
+                <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Samarth Agri</td>
+                <td style="padding:9px 12px;"><span style="background:#fed7d7;color:#9b2c2c;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">21</span></td>
+                <td style="padding:9px 12px;color:#e53e3e;font-weight:600;">Critical</td>
+                <td style="padding:9px 12px;"><span style="background:#fed7d7;color:#9b2c2c;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">Yes</span></td>
+                <td style="padding:9px 12px;color:#d69e2e;font-weight:600;">&#10003; 5/9</td>
+                <td style="padding:9px 12px;color:#4a5568;">Karan M.</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:9px 12px;font-weight:600;color:var(--navy);">mGrant v4 <span style="font-size:10px;background:#ebf4ff;color:#2b6cb0;border-radius:3px;padding:1px 5px;font-weight:600;margin-left:4px;">Product</span></td>
+                <td style="padding:9px 12px;"><span style="background:#c6f6d5;color:#276749;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">76</span></td>
+                <td style="padding:9px 12px;color:#276749;font-weight:600;">On Track</td>
+                <td style="padding:9px 12px;"><span style="background:#c6f6d5;color:#276749;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">No</span></td>
+                <td style="padding:9px 12px;color:#276749;font-weight:600;">&#10003; 4/4</td>
+                <td style="padding:9px 12px;color:#4a5568;">Ankit J.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4a5568;">
+            <span style="background:#fed7d7;color:#9b2c2c;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">Yes</span>
+            <span>= Client escalation active</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4a5568;">
+            <span style="background:#c6f6d5;color:#276749;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">No</span>
+            <span>= No escalation</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4a5568;">
+            <span style="font-weight:700;color:#276749;">&#10003; 9/9</span>
+            <span>= Service project SETU (9 fields)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4a5568;">
+            <span style="font-weight:700;color:#276749;">&#10003; 4/4</span>
+            <span>= Product project SETU (MGRANT / MFORM cost centres, 4 fields)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cl info" style="margin-top:18px;"><span class="cl-i">&#128274;</span><span><strong>Permission isolation:</strong> You only see your own projects. Each PM's dashboard is scoped to their own submitted reviews — you cannot view another PM's project data, and they cannot view yours.</span></div>
     </div>
 
     <!-- ── P2: THE FORM (all 6 tabs inline) ── -->
@@ -470,10 +536,29 @@ body{font-family:'Poppins',sans-serif;
         <div class="fr"><div class="fd"></div><div class="fn">Upcoming Milestones</div><div class="fx">Major deliverables or deadlines next month</div></div>
       </div>
       <div class="ftab" id="ft2">
-        <div class="tab-intro-box">Internal process compliance checklist. Answer each item <strong>Yes / No / NA</strong>. Compliance % is calculated automatically.</div>
+        <div class="tab-intro-box">Internal process compliance checklist. Answer each item <strong>Yes / No / NA</strong>. Compliance % is calculated automatically. The number of fields you see depends on your project type.</div>
         <div class="fr"><div class="fd"></div><div class="fn">SETU Checklist Items</div><div class="fx">Yes = compliant, No = not compliant, NA = doesn't apply to this project</div></div>
         <div class="fr"><div class="fd"></div><div class="fn">SETU Compliance %</div><div class="fx">Calculated from your Yes / No answers <span class="atag">auto</span></div></div>
         <div class="cl warn"><span class="cl-i">⚠️</span><span>NA is not the same as No — marking NA does not hurt your compliance score.</span></div>
+        <!-- SETU type breakdown -->
+        <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:#f7fafc;border:1px solid var(--border);border-radius:8px;padding:13px 15px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--gray);margin-bottom:8px;">Service Projects</div>
+            <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px;">9 SETU Fields</div>
+            <div style="font-size:11.5px;color:#4a5568;line-height:1.7;">
+              Kickoff &nbsp;&bull;&nbsp; Stakeholder Mapping &nbsp;&bull;&nbsp; Solution Doc &nbsp;&bull;&nbsp; Risk Register &nbsp;&bull;&nbsp; Project Plan &nbsp;&bull;&nbsp; Support Desk &nbsp;&bull;&nbsp; Go-Live Checklist &nbsp;&bull;&nbsp; Satisfaction Survey &nbsp;&bull;&nbsp; Steerco
+            </div>
+            <div style="margin-top:8px;font-size:11px;color:var(--gray);">Dashboard shows e.g. <strong style="color:#276749;">&#10003; 7/9</strong></div>
+          </div>
+          <div style="background:#ebf4ff;border:1px solid #bee3f8;border-radius:8px;padding:13px 15px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#2b6cb0;margin-bottom:8px;">Product Projects <span style="font-size:9px;">(MGRANT / MFORM cost centres)</span></div>
+            <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px;">4 SETU Fields</div>
+            <div style="font-size:11.5px;color:#4a5568;line-height:1.7;">
+              Steerco &nbsp;&bull;&nbsp; Risk Register &nbsp;&bull;&nbsp; Project Plan &nbsp;&bull;&nbsp; Support Desk
+            </div>
+            <div style="margin-top:8px;font-size:11px;color:var(--gray);">Dashboard shows e.g. <strong style="color:#276749;">&#10003; 4/4</strong></div>
+          </div>
+        </div>
       </div>
       <div class="ftab" id="ft3">
         <div class="tab-intro-box">AI tool usage on your project. <strong>AI Maturity Level</strong> (1–5) is calculated automatically.</div>
@@ -487,9 +572,12 @@ body{font-family:'Poppins',sans-serif;
       <div class="ftab" id="ft4">
         <div class="tab-intro-box">Client relationship and team health. Be honest — this is how leadership decides where to send support.</div>
         <div class="fr"><div class="fd"></div><div class="fn">Client Satisfaction</div><div class="fx">1 (very dissatisfied) to 5 (very satisfied)</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Client Escalation</div><div class="fx">Yes or No — if Yes, describe the escalation</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Client Escalation</div><div class="fx">Yes or No — <strong>if Yes</strong>, two additional fields become required: <em>Escalation Details</em> and <em>Action Taken</em></div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Attrition Risk</div><div class="fx">None / Low / Medium / High — <strong>if not None</strong>, the <em>Attrition Details</em> field is required</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Resource Requirement</div><div class="fx">Yes or No — <strong>if Yes</strong>, at least one Resource Type must be selected; if "Others" is ticked, the Others text field is also required</div></div>
         <div class="fr"><div class="fd"></div><div class="fn">Team Morale</div><div class="fx">High / Medium / Low</div></div>
         <div class="fr"><div class="fd"></div><div class="fn">Team Challenges</div><div class="fx">Blockers, capacity issues, or concerns</div></div>
+        <div class="cl info"><span class="cl-i">ℹ️</span><span>The conditional fields above (Escalation Details, Action Taken, Attrition Details, Resource Type) are hidden until you set the parent field to Yes / not-None. They will be checked at submission time.</span></div>
       </div>
       <div class="ftab" id="ft5">
         <div class="tab-intro-box">Your overall read of the month. The most-read section after the health score.</div>
@@ -524,10 +612,34 @@ body{font-family:'Poppins',sans-serif;
       <div class="steps">
         <div class="sr-row"><div class="sl-l"><div class="snum">1</div><div class="sline"></div></div><div class="sb2"><strong>Save</strong> at any point — stores a draft, not visible on dashboard yet</div></div>
         <div class="sr-row"><div class="sl-l"><div class="snum">2</div><div class="sline"></div></div><div class="sb2">Review all <strong>6 tabs</strong> and verify everything looks accurate</div></div>
-        <div class="sr-row"><div class="sl-l"><div class="snum">3</div><div class="sline"></div></div><div class="sb2">Click <strong>Submit</strong> — review locks and appears on the dashboard immediately</div></div>
+        <div class="sr-row"><div class="sl-l"><div class="snum">3</div><div class="sline"></div></div><div class="sb2">Click <strong>Submit</strong> — the system runs validation checks (see below), then locks the review and publishes it to the dashboard immediately</div></div>
         <div class="sr-row"><div class="sl-l"><div class="snum">4</div><div class="sline"></div></div><div class="sb2">Your <strong>reporting manager</strong> is notified for sign-off</div></div>
       </div>
-      <div class="cl warn"><span class="cl-i">⚠️</span><span><strong>Once per project per month only.</strong> To correct after submitting, ask your manager to cancel it.</span></div>
+
+      <!-- Submit validation rules -->
+      <div style="margin-top:18px;background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:16px 18px;">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--gray);margin-bottom:12px;">Validation checks run at submission</div>
+        <div style="font-size:12.5px;color:#4a5568;line-height:1;margin-bottom:0;">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);">
+            <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span>
+            <div><strong style="color:var(--navy);">Deliverables</strong> — at least one deliverable row must have <em>Applicable</em> set to <strong>Yes</strong>. A review with all deliverables marked N/A will not submit.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);">
+            <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span>
+            <div><strong style="color:var(--navy);">Client Escalation = Yes</strong> — both <em>Escalation Details</em> and <em>Action Taken</em> fields must be filled before the form will submit.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);">
+            <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span>
+            <div><strong style="color:var(--navy);">Attrition Risk &ne; None</strong> — the <em>Attrition Details</em> field must be filled if you have flagged any level of attrition risk.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;">
+            <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</span>
+            <div><strong style="color:var(--navy);">Resource Requirement = Yes</strong> — at least one Resource Type must be selected. If you tick <em>Others</em>, the Others text field must also be filled in.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cl warn" style="margin-top:14px;"><span class="cl-i">⚠️</span><span><strong>Once per project per month only.</strong> To correct after submitting, ask your manager to cancel it.</span></div>
       <div style="margin-top:16px;text-align:center;padding:18px;background:#f8fafc;border-radius:10px;border:1px solid var(--border);">
         <div style="font-size:11px;color:var(--gray);margin-bottom:3px;">Need help?</div>
         <div style="font-size:13px;color:var(--navy);font-weight:700;"><strong>Ankit Jangir</strong> (IT) &nbsp;·&nbsp; <strong>Ravi Jangir</strong> (Operations)</div>

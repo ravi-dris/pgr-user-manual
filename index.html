@@ -418,14 +418,48 @@ body{font-family:'Poppins',sans-serif;
         <div class="nc p"><div class="nc-em">💰</div><div class="nc-lbl">Total FY Revenue</div><div class="nc-val sm">₹ Contracted</div><div class="nc-desc">Sum across all projects</div></div>
         <div class="nc t"><div class="nc-em">✅</div><div class="nc-lbl">Avg SETU Compliance</div><div class="nc-val">67%</div><div class="nc-desc">Average across projects</div></div>
       </div>
-      <div class="chart-2">
-        <div class="cbox span2"><div class="clbl">Health Score by Project</div><canvas id="cHealth"></canvas></div>
-        <div class="cbox"><div class="clbl">Project Status</div><canvas id="cStatus"></canvas></div>
-        <div class="cbox"><div class="clbl">AI Maturity</div><canvas id="cAI"></canvas></div>
-        <div class="cbox"><div class="clbl">Schedule Confidence</div><canvas id="cSched"></canvas></div>
-        <div class="cbox"><div class="clbl">Team Morale</div><canvas id="cMorale"></canvas></div>
+      <!-- Project Cards -->
+      <div style="margin-top:18px;">
+        <div class="clbl" style="margin-bottom:10px;">Project Cards</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>One card per submitted review, sorted by health score. Scroll horizontally if there are many projects. <strong>Click any card to open that PGR form directly.</strong></span></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+            <div><strong style="color:var(--navy);">Health Score circle</strong> — top-right of each card. Green ≥ 70, Amber 40–69, Red &lt; 40.</div>
+            <div><strong style="color:var(--navy);">Status &amp; AI badge</strong> — On Track / Needs Attention / Critical etc. + AI Maturity level (Level 0–3).</div>
+            <div><strong style="color:var(--navy);">Escalation badge</strong> — red "Escalation" pill appears only when Client Escalation = Yes.</div>
+            <div><strong style="color:var(--navy);">6 dot indicators</strong> — Schedule · Client · Morale · Attrition · SETU · Deliverables. Green = good, Amber = watch, Red = action needed.</div>
+            <div style="grid-column:1/-1;"><strong style="color:var(--navy);">Progress bar</strong> — deliverable completion % for that project this month.</div>
+          </div>
+        </div>
       </div>
-      <div class="cl warn" style="margin-top:14px;"><span class="cl-i">⚠️</span><span><strong>Submitted reviews only.</strong> The KPI cards and all charts above reflect only reviews that have been submitted. Saved drafts are invisible to the dashboard until submitted.</span></div>
+
+      <!-- Financial Performance -->
+      <div style="margin-top:18px;">
+        <div class="clbl" style="margin-bottom:10px;">Financial Performance</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;">
+            <div class="clbl" style="margin-bottom:8px;">Collection Rate Gauge</div>
+            <p style="font-size:12.5px;color:#4a5568;margin-bottom:8px;">Semicircle gauge showing how much of the FY Contracted value has been received as payment.</p>
+            <ul style="font-size:12px;color:#4a5568;padding-left:16px;line-height:1.8;">
+              <li><span style="color:#10b981;font-weight:700;">≥ 70%</span> — On Track (green)</li>
+              <li><span style="color:#f59e0b;font-weight:700;">40–69%</span> — Moderate (amber)</li>
+              <li><span style="color:#ef4444;font-weight:700;">&lt; 40%</span> — Below Target (red)</li>
+            </ul>
+            <p style="font-size:11.5px;color:#6b7280;margin-top:8px;">Below the gauge: FY Contracted total and FY Received total across all your projects.</p>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;">
+            <div class="clbl" style="margin-bottom:8px;">Profitability per Project</div>
+            <p style="font-size:12.5px;color:#4a5568;margin-bottom:8px;">Dual horizontal bar per project — Contract Value (blue) vs Hours Cost (orange).</p>
+            <ul style="font-size:12px;color:#4a5568;padding-left:16px;line-height:1.8;">
+              <li><span style="color:#10b981;font-weight:700;">▲ amount</span> — Project is profitable</li>
+              <li><span style="color:#ef4444;font-weight:700;">▼ amount</span> — Hours cost exceeds contract</li>
+            </ul>
+            <p style="font-size:11.5px;color:#6b7280;margin-top:8px;">Sorted highest profitability first. Only projects with contract or hours data appear.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cl warn" style="margin-top:14px;"><span class="cl-i">⚠️</span><span><strong>Submitted reviews only.</strong> All sections above — KPI cards, Project Cards, Financial Performance charts, and Project Intelligence table — reflect only submitted reviews. Saved drafts are invisible to the dashboard.</span></div>
 
       <!-- Project Intelligence table -->
       <div style="margin-top:22px;">
@@ -704,7 +738,7 @@ function goTo(idx) {
   document.getElementById('p'+cur).classList.add('active');
   document.getElementById('content').scrollTop = 0;
   _updateUI();
-  if (cur === 1 && !chartsReady) { chartsReady = true; setTimeout(initCharts, 60); }
+  // charts removed — dashboard now uses live workspace iframes
 }
 
 function _updateUI() {
@@ -738,13 +772,8 @@ function _updateUI() {
 }
 
 function initCharts() {
-  const scores = [88,80,76,63,60,50,50,43,21,9];
-  new Chart(document.getElementById('cHealth'),{type:'bar',data:{labels:['QSure','AM Foundation','Office Admin','Piramal-ESIC','ATMA-MIS','General','Swapdan','CSR INOPS','Samarth Agri','BEAM Farmer'],datasets:[{data:scores,backgroundColor:scores.map(v=>v>=75?'#68d391':v>=50?'#f6e05e':'#fc8181'),borderRadius:5}]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:'#f0f4f8'},max:100}}}});
-  const doOpts={plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:11,padding:8}}},cutout:'58%'};
-  new Chart(document.getElementById('cStatus'),{type:'doughnut',data:{labels:['On Track','At Risk','Needs Attention','Critical','On Hold'],datasets:[{data:[4,2,2,1,1],backgroundColor:['#68d391','#f6e05e','#f6ad55','#fc8181','#a0aec0'],borderWidth:2,borderColor:'#fff'}]},options:doOpts});
-  new Chart(document.getElementById('cAI'),{type:'doughnut',data:{labels:['Level 1','Level 2','Level 3'],datasets:[{data:[7,2,1],backgroundColor:['#bee3f8','#4299e1','#2b6cb0'],borderWidth:2,borderColor:'#fff'}]},options:doOpts});
-  new Chart(document.getElementById('cSched'),{type:'doughnut',data:{labels:['On Track','At Risk','Delayed'],datasets:[{data:[5,3,2],backgroundColor:['#68d391','#f6e05e','#fc8181'],borderWidth:2,borderColor:'#fff'}]},options:doOpts});
-  new Chart(document.getElementById('cMorale'),{type:'doughnut',data:{labels:['Good','Okay','Low'],datasets:[{data:[4,4,2],backgroundColor:['#68d391','#f6e05e','#fc8181'],borderWidth:2,borderColor:'#fff'}]},options:doOpts});
+  // Old charts (Health Score by Project, Project Status, AI Maturity, Schedule Confidence, Team Morale)
+  // were removed from the workspace. Dashboard now uses live Project Cards and Financial Performance iframes.
 }
 
 // ── SPOTLIGHT TOUR ──

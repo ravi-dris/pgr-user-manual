@@ -411,6 +411,7 @@ body{font-family:'Poppins',sans-serif;
         <div class="ph-title">The Dashboard</div>
         <div class="ph-sub">Navigate to <strong>Project Governance</strong> in the sidebar. Auto-updated each time a PM submits a review. Live data — April 2026.</div>
       </div>
+      <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">💡</span><span><strong>Inline help available.</strong> Look for the <em>&ldquo;What&rsquo;s this?&rdquo;</em> link next to each section heading. Click it to expand an in-place explanation of what that section shows and how to read it.</span></div>
       <div class="num-grid">
         <div class="nc b"><div class="nc-em">📁</div><div class="nc-lbl">Active Projects</div><div class="nc-val">10</div><div class="nc-desc">Reviews submitted this month</div></div>
         <div class="nc g"><div class="nc-em">💚</div><div class="nc-lbl">Avg Health Score</div><div class="nc-val">54</div><div class="nc-desc">Across all active projects</div></div>
@@ -419,6 +420,21 @@ body{font-family:'Poppins',sans-serif;
         <div class="nc p"><div class="nc-em">💰</div><div class="nc-lbl">Total FY Revenue</div><div class="nc-val sm">₹ Contracted</div><div class="nc-desc">Sum across all projects</div></div>
         <div class="nc t"><div class="nc-em">✅</div><div class="nc-lbl">Avg SETU Compliance</div><div class="nc-val">67%</div><div class="nc-desc">Average across projects</div></div>
       </div>
+
+      <!-- Quick Actions -->
+      <div style="margin-top:18px;">
+        <div class="clbl" style="margin-bottom:10px;">Quick Actions</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Shortcut buttons at the top of the workspace. Each opens a specific view instantly — no menu navigation needed.</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">New PGR</strong><br><span style="color:#4a5568;">Opens a blank review form for the current month. Use this to start a new monthly submission.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">All PGR Reviews</strong><br><span style="color:#4a5568;">Shows all submitted PGR records across all projects and months.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">PGR List</strong><br><span style="color:#4a5568;">Default list view of all your PGR reviews — drafts and submitted.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Low AI Adoption</strong><br><span style="color:#4a5568;">Pre-filtered to projects at AI Maturity Level 0 or Level 1 — quickly identify teams needing AI enablement support.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Non-Negotiable</strong><br><span style="color:#4a5568;">Opens the report of all At Risk and Critical projects requiring immediate attention.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Month Wise Trend</strong><br><span style="color:#4a5568;">Opens the trend report comparing health scores, financials, and qualitative indicators month-over-month.</span></div>
+        </div>
+      </div>
+
       <!-- Project Cards -->
       <div style="margin-top:18px;">
         <div class="clbl" style="margin-bottom:10px;">Project Cards</div>
@@ -430,6 +446,61 @@ body{font-family:'Poppins',sans-serif;
             <div><strong style="color:var(--navy);">Escalation badge</strong> — red "Escalation" pill appears only when Client Escalation = Yes.</div>
             <div><strong style="color:var(--navy);">6 dot indicators</strong> — Schedule · Client · Morale · Attrition · SETU · Deliverables. Green = good, Amber = watch, Red = action needed.</div>
             <div style="grid-column:1/-1;"><strong style="color:var(--navy);">Progress bar</strong> — deliverable completion % for that project this month.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Health Dimension Matrix -->
+      <div style="margin-top:22px;">
+        <div class="clbl" style="margin-bottom:12px;">Health Dimension Matrix</div>
+        <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">ℹ️</span><span>A table showing every project with its key health indicators in one view. Each column is colour-coded so you can spot issues at a glance.</span></div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+            <thead>
+              <tr style="background:#f7fafc;text-transform:uppercase;font-size:10px;letter-spacing:.6px;color:var(--gray);">
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Column</th>
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">What it shows</th>
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Colour bands</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Health Score</td><td style="padding:9px 12px;color:#4a5568;">Composite 0–100 score from all review fields.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;70 Green</span> &middot; <span style="color:#f59e0b;font-weight:700;">40–69 Amber</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;40 Red</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Overall Status</td><td style="padding:9px 12px;color:#4a5568;">PM&rsquo;s declared project status for the month.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">On Track</span> &middot; <span style="color:#f59e0b;font-weight:700;">Needs Attention</span> &middot; <span style="color:#e53e3e;font-weight:700;">At Risk / Critical</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Schedule Confidence</td><td style="padding:9px 12px;color:#4a5568;">PM&rsquo;s confidence in meeting deadlines.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">High</span> &middot; <span style="color:#f59e0b;font-weight:700;">Medium</span> &middot; <span style="color:#ef4444;font-weight:700;">Low</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Client Perception</td><td style="padding:9px 12px;color:#4a5568;">How the client views project progress.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">Good</span> &middot; <span style="color:#f59e0b;font-weight:700;">Average</span> &middot; <span style="color:#ef4444;font-weight:700;">Bad / Not Sure</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Team Morale</td><td style="padding:9px 12px;color:#4a5568;">PM&rsquo;s assessment of team spirit and motivation.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">Good</span> &middot; <span style="color:#f59e0b;font-weight:700;">Okay</span> &middot; <span style="color:#ef4444;font-weight:700;">Low</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Attrition Risk</td><td style="padding:9px 12px;color:#4a5568;">Risk of team member departures in the near term.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">None</span> &middot; <span style="color:#f59e0b;font-weight:700;">Low / Medium</span> &middot; <span style="color:#ef4444;font-weight:700;">High</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">SETU %</td><td style="padding:9px 12px;color:#4a5568;">% of mandatory SETU checklist items completed.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;80% Green</span> &middot; <span style="color:#f59e0b;font-weight:700;">50–79% Amber</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;50% Red</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">AI Adoption %</td><td style="padding:9px 12px;color:#4a5568;">% of the team actively using AI tools this month.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;75% Green</span> &middot; <span style="color:#f59e0b;font-weight:700;">25–74% Amber</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;25% Red</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Escalation</td><td style="padding:9px 12px;color:#4a5568;">Whether a client escalation is currently active.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">No (Green)</span> &middot; <span style="color:#ef4444;font-weight:700;">Yes (Red)</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Detailed Analytics -->
+      <div style="margin-top:22px;">
+        <div class="clbl" style="margin-bottom:12px;">Detailed Analytics</div>
+        <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">ℹ️</span><span>Seven charts giving a cross-project view of key metrics. All charts reflect submitted reviews only.</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Health Score Distribution</strong><br><span style="color:#4a5568;">Doughnut — how many projects fall into Green (&ge;70), Amber (40–69), and Red (&lt;40) bands.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Overall Status Breakdown</strong><br><span style="color:#4a5568;">Doughnut — count of projects per status: On Track, Needs Attention, At Risk, Critical, On Hold, Closed.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">SETU Compliance by Project</strong><br><span style="color:#4a5568;">Horizontal bar — SETU % per project. Red &lt;50%, amber 50–79%, green &ge;80%.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">AI Adoption by Project</strong><br><span style="color:#4a5568;">Horizontal bar — % of each project team using AI tools. Tracks AI enablement progress across teams.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Client Perception Summary</strong><br><span style="color:#4a5568;">Doughnut — distribution of Good / Average / Not Sure / Bad across all projects.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Team Morale Overview</strong><br><span style="color:#4a5568;">Doughnut — distribution of Good / Okay / Low morale ratings across all projects.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;grid-column:1/-1;"><strong style="color:var(--navy);">Attrition Risk Heatmap</strong><br><span style="color:#4a5568;">Bar chart — count of projects at each attrition risk level (None / Low / Medium / High). High-risk projects highlighted in red.</span></div>
+        </div>
+      </div>
+
+      <!-- Deliverable Completion by Project -->
+      <div style="margin-top:22px;">
+        <div class="clbl" style="margin-bottom:12px;">Deliverable Completion by Project</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Horizontal bar chart showing each project&rsquo;s deliverable completion % for the month.</span></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+            <div><strong style="color:var(--navy);">Calculation</strong><br><span style="color:#4a5568;">Deliverables Completed &divide; Total Planned &times; 100. Entered by the PM in the Deliverables tab of the review form.</span></div>
+            <div><strong style="color:var(--navy);">Colour thresholds</strong><br><ul style="font-size:12px;color:#4a5568;padding-left:16px;line-height:1.8;margin:0;"><li><span style="color:#10b981;font-weight:700;">&ge;80%</span> — On track (green)</li><li><span style="color:#f59e0b;font-weight:700;">50–79%</span> — Partial (amber)</li><li><span style="color:#ef4444;font-weight:700;">&lt;50%</span> — Behind (red)</li></ul></div>
           </div>
         </div>
       </div>

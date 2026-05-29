@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -363,6 +363,7 @@ body{font-family:'Poppins',sans-serif;
   <div class="ni" data-p="3" onclick="goTo(3)"><span class="ico">❤️</span><span class="lbl">Health Score</span><span class="ck">✓</span></div>
   <div class="ni" data-p="4" onclick="goTo(4)"><span class="ico">✅</span><span class="lbl">Submitting</span><span class="ck">✓</span></div>
   <div class="ni" data-p="5" onclick="goTo(5)"><span class="ico">🚨</span><span class="lbl">Non-Negotiables</span><span class="ck">✓</span></div>
+  <div class="ni" data-p="6" onclick="goTo(6)"><span class="ico">📈</span><span class="lbl">Month Wise Trend</span><span class="ck">✓</span></div>
 </aside>
 
 <!-- ════════════════ MAIN ════════════════ -->
@@ -372,7 +373,7 @@ body{font-family:'Poppins',sans-serif;
   <header class="topbar">
     <div class="tb-title" id="tb-title">Welcome</div>
     <div class="tb-dots" id="tb-dots"></div>
-    <div class="tb-counter" id="tb-counter">1 / 5</div>
+    <div class="tb-counter" id="tb-counter">1 / 6</div>
   </header>
 
   <!-- Content -->
@@ -861,6 +862,77 @@ body{font-family:'Poppins',sans-serif;
       </div>
     </div>
 
+    <!-- ── P6: MONTH WISE TREND ── -->
+    <div class="panel" id="p6">
+      <div class="ph">
+        <div class="ph-eye">Trend Analysis</div>
+        <div class="ph-title">Month Wise Trend</div>
+        <div class="ph-sub">Track how your projects are performing over time — health scores, financials, AI adoption, and delivery confidence, month by month.</div>
+      </div>
+
+      <!-- What the report shows -->
+      <div style="margin-bottom:20px;">
+        <div class="clbl" style="margin-bottom:10px;">What this report shows</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Open it from the <strong>Month Wise Trend</strong> shortcut on the Project Governance workspace. It reads from submitted PGR reviews only — drafts are excluded.</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Quantitative view</strong><br><span style="color:#4a5568;">Numeric indicators — health score, total hours, financial figures, team size, AI adoption %, SETU compliance — plotted as trend lines across months.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Qualitative view</strong><br><span style="color:#4a5568;">Status fields — Schedule Confidence, Client Perception, Team Morale, Attrition Risk — shown as a colour-coded matrix across months.</span></div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div style="margin-bottom:20px;">
+        <div class="clbl" style="margin-bottom:10px;">Filters</div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:auto 1fr;font-size:12.5px;">
+            <div style="padding:10px 14px;background:#f0f4ff;border-bottom:1px solid var(--border);font-weight:700;color:var(--navy);">Filter</div>
+            <div style="padding:10px 14px;background:#f0f4ff;border-bottom:1px solid var(--border);font-weight:700;color:var(--navy);">What it does</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600;color:#374151;">View</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">Switch between <strong>Quantitative</strong> (numbers and trends) and <strong>Qualitative</strong> (status flags). Required — defaults to Quantitative.</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600;color:#374151;">From Month / Year</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">Start of the period you want to analyse. Required.</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600;color:#374151;">To Month / Year</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">End of the period. Required.</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);font-weight:600;color:#374151;">Project Category</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">Filter by <strong>Product</strong> or <strong>Services</strong>. Scopes both the data and the Project dropdown below — only projects in the selected category are shown. Changing the category clears any selected project.</div>
+            <div style="padding:9px 14px;font-weight:600;color:#374151;">Project</div>
+            <div style="padding:9px 14px;color:#4a5568;">Drill into a single project. Optional — leave blank to see all projects in the selected category (or all projects if no category is selected).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Category explained -->
+      <div style="margin-bottom:20px;">
+        <div class="clbl" style="margin-bottom:10px;">Project Category — Product vs Services</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Every project is tagged as <strong>Product</strong> or <strong>Services</strong> based on its Cost Centre. The system assigns this automatically when a project is saved.</span></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:auto auto 1fr;font-size:12.5px;">
+            <div style="padding:10px 14px;background:#f0f4ff;border-bottom:1px solid var(--border);font-weight:700;color:var(--navy);">Category</div>
+            <div style="padding:10px 14px;background:#f0f4ff;border-bottom:1px solid var(--border);font-weight:700;color:var(--navy);">Cost Centre pattern</div>
+            <div style="padding:10px 14px;background:#f0f4ff;border-bottom:1px solid var(--border);font-weight:700;color:var(--navy);">Examples</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);"><span style="background:#dbeafe;color:#1e40af;border-radius:4px;padding:2px 8px;font-weight:600;font-size:11.5px;">Product</span></div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#374151;">MFORM or MGRANT</div>
+            <div style="padding:9px 14px;border-bottom:1px solid var(--border);color:#4a5568;">MFORM - D, MGRANT - D, M Form D, M Grant D</div>
+            <div style="padding:9px 14px;"><span style="background:#dcfce7;color:#166534;border-radius:4px;padding:2px 8px;font-weight:600;font-size:11.5px;">Services</span></div>
+            <div style="padding:9px 14px;color:#374151;">Services</div>
+            <div style="padding:9px 14px;color:#4a5568;">Services - D</div>
+          </div>
+        </div>
+        <div class="cl warn" style="margin-top:10px;"><span class="cl-i">⚠️</span><span>If a project's category is blank, it will not appear when a category filter is applied. Contact the admin to get the project tagged.</span></div>
+      </div>
+
+      <!-- Reading charts -->
+      <div>
+        <div class="clbl" style="margin-bottom:10px;">Reading the Charts</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">One line per project</strong><br><span style="color:#4a5568;">Each project gets its own coloured line. Hover over a data point to see the exact value and project name for that month.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Months on the X-axis</strong><br><span style="color:#4a5568;">The range you set in From / To filters. Months with no submitted review for a project are skipped — gaps in the line are expected.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Drill down</strong><br><span style="color:#4a5568;">Use the Project filter to isolate a single project and see its trend in detail without noise from other projects.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Category comparison</strong><br><span style="color:#4a5568;">Select <strong>Product</strong> or <strong>Services</strong> (with no project selected) to compare all projects in that group side by side.</span></div>
+        </div>
+        <div class="cl info" style="margin-top:12px;"><span class="cl-i">ℹ️</span><span>Charts render below the data table after the report runs. If the chart area is empty, check that your date range has at least one submitted review in the system.</span></div>
+      </div>
+    </div>
   </div><!-- /content -->
 
   <!-- Bottom nav -->
@@ -899,6 +971,7 @@ const PANELS = [
   { title:'Health Score', eye:'Understanding Your Score' },
   { title:'Submitting', eye:'Final Step' },
   { title:'Non-Negotiables', eye:'Watch List' },
+  { title:'Month Wise Trend', eye:'Trend Analysis' },
 ];
 let cur = 0;
 const visited = new Set([0]);

@@ -410,17 +410,20 @@ body{font-family:'Poppins',sans-serif;
       <div class="ph">
         <div class="ph-eye">Dashboard</div>
         <div class="ph-title">The Dashboard</div>
-        <div class="ph-sub">Navigate to <strong>Project Governance</strong> in the sidebar. Auto-updated each time a PM submits a review. Live data — April 2026.</div>
+        <div class="ph-sub">Navigate to <strong>Project Governance</strong> in the sidebar. Auto-updated each time a PM submits a review. Use the <strong>month picker</strong> (top-right) to switch period — every card and section refreshes to that month.</div>
       </div>
-      <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">💡</span><span><strong>Inline help available.</strong> Look for the <em>&ldquo;What&rsquo;s this?&rdquo;</em> link next to each section heading. Click it to expand an in-place explanation of what that section shows and how to read it.</span></div>
+      <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">💡</span><span><strong>Inline help everywhere.</strong> Each section heading has a <em>&ldquo;What&rsquo;s this?&rdquo;</em> link — hover or click it for a plain-language explanation of what that section shows and how to read it.</span></div>
+
+      <!-- KPI strip -->
+      <div class="clbl" style="margin-bottom:10px;">This Month at a Glance</div>
       <div class="num-grid">
         <div class="nc b"><div class="nc-em">📁</div><div class="nc-lbl">Active Projects</div><div class="nc-val">10</div><div class="nc-desc">Reviews submitted this month</div></div>
-        <div class="nc g"><div class="nc-em">💚</div><div class="nc-lbl">Avg Health Score</div><div class="nc-val">54</div><div class="nc-desc">Across all active projects</div></div>
-        <div class="nc r"><div class="nc-em">⚠️</div><div class="nc-lbl">At Risk / Critical</div><div class="nc-val">3</div><div class="nc-desc">Projects scoring below 50</div></div>
-        <div class="nc o"><div class="nc-em">🚨</div><div class="nc-lbl">Active Escalations</div><div class="nc-val">1</div><div class="nc-desc">Open client escalations</div></div>
-        <div class="nc p"><div class="nc-em">💰</div><div class="nc-lbl">Total FY Revenue</div><div class="nc-val sm">₹ Contracted</div><div class="nc-desc">Sum across all projects</div></div>
+        <div class="nc g"><div class="nc-em">💚</div><div class="nc-lbl">Avg Health Score</div><div class="nc-val">62</div><div class="nc-desc">Across submitted reviews</div></div>
+        <div class="nc r"><div class="nc-em">⚠️</div><div class="nc-lbl">At Risk / Critical</div><div class="nc-val">3</div><div class="nc-desc">Projects flagged At Risk or Critical</div></div>
+        <div class="nc o"><div class="nc-em">🚨</div><div class="nc-lbl">Active Escalations</div><div class="nc-val">2</div><div class="nc-desc">Open client escalations</div></div>
         <div class="nc t"><div class="nc-em">✅</div><div class="nc-lbl">Avg SETU Compliance</div><div class="nc-val">67%</div><div class="nc-desc">Average across projects</div></div>
       </div>
+      <div class="cl info" style="margin-top:10px;"><span class="cl-i">ℹ️</span><span>The <strong>Total FY Revenue</strong> card was retired — annual contract figures repeated on every monthly review aren&rsquo;t a reliable monthly signal. Revenue now lives in the Project Revenue module, where it belongs. A per-project <strong>Collection Rate</strong> still appears in the Health Matrix below.</span></div>
 
       <!-- Quick Actions -->
       <div style="margin-top:18px;">
@@ -432,173 +435,92 @@ body{font-family:'Poppins',sans-serif;
           <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">PGR List</strong><br><span style="color:#4a5568;">Default list view of all your PGR reviews — drafts and submitted.</span></div>
           <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Low AI Adoption</strong><br><span style="color:#4a5568;">Pre-filtered to projects at AI Maturity Level 0 or Level 1 — quickly identify teams needing AI enablement support.</span></div>
           <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Non-Negotiable</strong><br><span style="color:#4a5568;">Opens the report of all At Risk and Critical projects requiring immediate attention.</span></div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Month Wise Trend</strong><br><span style="color:#4a5568;">Opens the trend report comparing health scores, financials, and qualitative indicators month-over-month.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Month Wise Trend</strong><br><span style="color:#4a5568;">Opens the trend report comparing health scores and qualitative indicators month-over-month.</span></div>
         </div>
       </div>
 
-      <!-- Project Cards -->
-      <div style="margin-top:18px;">
-        <div class="clbl" style="margin-bottom:10px;">Project Cards</div>
-        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>One card per submitted review, sorted by health score. Scroll horizontally if there are many projects. <strong>Click any card to open that PGR form directly.</strong></span></div>
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
-            <div><strong style="color:var(--navy);">Health Score circle</strong> — top-right of each card. Green ≥ 70, Amber 40–69, Red &lt; 40.</div>
-            <div><strong style="color:var(--navy);">Status &amp; AI badge</strong> — On Track / Needs Attention / Critical etc. + AI Maturity level (Level 0–3).</div>
-            <div><strong style="color:var(--navy);">Escalation badge</strong> — red "Escalation" pill appears only when Client Escalation = Yes.</div>
-            <div><strong style="color:var(--navy);">6 dot indicators</strong> — Schedule · Client · Morale · Attrition · SETU · Deliverables. Green = good, Amber = watch, Red = action needed.</div>
-            <div style="grid-column:1/-1;"><strong style="color:var(--navy);">Progress bar</strong> — deliverable completion % for that project this month.</div>
-          </div>
+      <!-- Portfolio Signals -->
+      <div style="margin-top:22px;">
+        <div class="clbl" style="margin-bottom:10px;">Portfolio Signals</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>The handful of numbers leadership actually needs for the selected month — surfaced straight from the form so no one has to dig.</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Open Critical Bugs</strong><br><span style="color:#4a5568;">Total show-stopper bugs reported across all projects this month.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Active Escalations</strong><br><span style="color:#4a5568;">Count of projects with a live client escalation.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Submission Coverage</strong><br><span style="color:#4a5568;">How many open projects have submitted a PGR this month (e.g. 18 / 23). Your at-a-glance &ldquo;who&rsquo;s missing&rdquo;.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">At Risk / Critical</strong><br><span style="color:#4a5568;">Projects the PM marked At Risk or Critical.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Avg Collection Rate</strong><br><span style="color:#4a5568;">Payment received vs contracted, averaged over projects that have contract data.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Phase Mix</strong><br><span style="color:#4a5568;">How the portfolio spreads across delivery phases — RG, Development, Go-Live Prep, Post Go-Live (± AMC).</span></div>
         </div>
       </div>
 
       <!-- Health Dimension Matrix -->
       <div style="margin-top:22px;">
         <div class="clbl" style="margin-bottom:12px;">Health Dimension Matrix</div>
-        <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">ℹ️</span><span>A table showing every project with its key health indicators in one view. Each column is colour-coded so you can spot issues at a glance.</span></div>
+        <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">ℹ️</span><span>The centrepiece. Every project that submitted this month, ranked best-to-worst by Health Score, with each dimension as a colour dot or value. <strong>Click any row to open that project&rsquo;s PGR.</strong></span></div>
         <div style="overflow-x:auto;">
           <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
             <thead>
               <tr style="background:#f7fafc;text-transform:uppercase;font-size:10px;letter-spacing:.6px;color:var(--gray);">
                 <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Column</th>
                 <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">What it shows</th>
-                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Colour bands</th>
+                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Colour / reading</th>
               </tr>
             </thead>
             <tbody>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Health Score</td><td style="padding:9px 12px;color:#4a5568;">Composite 0–100 score from all review fields.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;70 Green</span> &middot; <span style="color:#f59e0b;font-weight:700;">40–69 Amber</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;40 Red</span></td></tr>
-              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Overall Status</td><td style="padding:9px 12px;color:#4a5568;">PM&rsquo;s declared project status for the month.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">On Track</span> &middot; <span style="color:#f59e0b;font-weight:700;">Needs Attention</span> &middot; <span style="color:#e53e3e;font-weight:700;">At Risk / Critical</span></td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Schedule Confidence</td><td style="padding:9px 12px;color:#4a5568;">PM&rsquo;s confidence in meeting deadlines.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">High</span> &middot; <span style="color:#f59e0b;font-weight:700;">Medium</span> &middot; <span style="color:#ef4444;font-weight:700;">Low</span></td></tr>
-              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Client Perception</td><td style="padding:9px 12px;color:#4a5568;">How the client views project progress.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">Good</span> &middot; <span style="color:#f59e0b;font-weight:700;">Average</span> &middot; <span style="color:#ef4444;font-weight:700;">Bad / Not Sure</span></td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Team Morale</td><td style="padding:9px 12px;color:#4a5568;">PM&rsquo;s assessment of team spirit and motivation.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">Good</span> &middot; <span style="color:#f59e0b;font-weight:700;">Okay</span> &middot; <span style="color:#ef4444;font-weight:700;">Low</span></td></tr>
-              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Attrition Risk</td><td style="padding:9px 12px;color:#4a5568;">Risk of team member departures in the near term.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">None</span> &middot; <span style="color:#f59e0b;font-weight:700;">Low / Medium</span> &middot; <span style="color:#ef4444;font-weight:700;">High</span></td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">SETU %</td><td style="padding:9px 12px;color:#4a5568;">% of mandatory SETU checklist items completed.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;80% Green</span> &middot; <span style="color:#f59e0b;font-weight:700;">50–79% Amber</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;50% Red</span></td></tr>
-              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">AI Adoption %</td><td style="padding:9px 12px;color:#4a5568;">% of the team actively using AI tools this month.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;75% Green</span> &middot; <span style="color:#f59e0b;font-weight:700;">25–74% Amber</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;25% Red</span></td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Escalation</td><td style="padding:9px 12px;color:#4a5568;">Whether a client escalation is currently active.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">No (Green)</span> &middot; <span style="color:#ef4444;font-weight:700;">Yes (Red)</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Health</td><td style="padding:9px 12px;color:#4a5568;">Composite 0–100 score (see Health Score section).</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;70 Green</span> &middot; <span style="color:#f59e0b;font-weight:700;">40–69 Amber</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;40 Red</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Status</td><td style="padding:9px 12px;color:#4a5568;">PM&rsquo;s declared status. A red &#9650; (<strong>Perception Gap</strong>) appears when the PM&rsquo;s status looks more positive than the computed score — worth a closer look.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">On Track</span> &middot; <span style="color:#f59e0b;font-weight:700;">Needs Attention</span> &middot; <span style="color:#e53e3e;font-weight:700;">At Risk / Critical</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Schedule</td><td style="padding:9px 12px;color:#4a5568;">Are scheduled deliverables on track.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">On Track</span> &middot; <span style="color:#f59e0b;font-weight:700;">At Risk</span> &middot; <span style="color:#ef4444;font-weight:700;">Delayed</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Client</td><td style="padding:9px 12px;color:#4a5568;">Client perception of progress.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">Good</span> &middot; <span style="color:#f59e0b;font-weight:700;">Average</span> &middot; <span style="color:#ef4444;font-weight:700;">Bad / Not Sure</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Bugs</td><td style="padding:9px 12px;color:#4a5568;">Open critical / show-stopper bugs for that project.</td><td style="padding:9px 12px;"><span style="color:#ef4444;font-weight:700;">red if &gt; 0</span> &middot; grey dash if not asked this phase</td></tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">SETU</td><td style="padding:9px 12px;color:#4a5568;">Process-compliance band (see SETU note in the Form section).</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;70 Green</span> &middot; <span style="color:#f59e0b;font-weight:700;">40–69 Amber</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;40 Red</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Collect</td><td style="padding:9px 12px;color:#4a5568;">Collection Rate — payment received vs contracted.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">&ge;70%</span> &middot; <span style="color:#f59e0b;font-weight:700;">40–69%</span> &middot; <span style="color:#ef4444;font-weight:700;">&lt;40%</span> &middot; dash if no contract data</td></tr>
+              <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">AI</td><td style="padding:9px 12px;color:#4a5568;">AI Maturity level (see AI Adoption + Health Score sections).</td><td style="padding:9px 12px;"><span style="color:#ef4444;font-weight:700;">L0</span> &middot; <span style="color:#f59e0b;font-weight:700;">L1</span> &middot; <span style="color:#3b82f6;font-weight:700;">L2</span> &middot; <span style="color:#8b5cf6;font-weight:700;">L3</span></td></tr>
+              <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Esc</td><td style="padding:9px 12px;color:#4a5568;">Is a client escalation currently active.</td><td style="padding:9px 12px;"><span style="color:#10b981;font-weight:700;">OK (No)</span> &middot; <span style="color:#ef4444;font-weight:700;">! (Yes)</span></td></tr>
             </tbody>
           </table>
         </div>
+        <div class="cl info" style="margin-top:12px;"><span class="cl-i">ℹ️</span><span>A <strong>grey dot or dash</strong> means that field isn&rsquo;t asked in the project&rsquo;s current phase (e.g. an early Requirement-Gathering project, or a Post Go-Live / Under-AMC project) — so it&rsquo;s genuinely N/A, not missing.</span></div>
       </div>
 
-      <!-- Detailed Analytics -->
+      <!-- Escalation Watchlist -->
       <div style="margin-top:22px;">
-        <div class="clbl" style="margin-bottom:12px;">Detailed Analytics</div>
-        <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">ℹ️</span><span>Seven charts giving a cross-project view of key metrics. All charts reflect submitted reviews only.</span></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Health Score Distribution</strong><br><span style="color:#4a5568;">Doughnut — how many projects fall into Green (&ge;70), Amber (40–69), and Red (&lt;40) bands.</span></div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Overall Status Breakdown</strong><br><span style="color:#4a5568;">Doughnut — count of projects per status: On Track, Needs Attention, At Risk, Critical, On Hold, Closed.</span></div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">SETU Compliance by Project</strong><br><span style="color:#4a5568;">Horizontal bar — SETU % per project. Red &lt;50%, amber 50–79%, green &ge;80%.</span></div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">AI Adoption by Project</strong><br><span style="color:#4a5568;">Horizontal bar — % of each project team using AI tools. Tracks AI enablement progress across teams.</span></div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Client Perception Summary</strong><br><span style="color:#4a5568;">Doughnut — distribution of Good / Average / Not Sure / Bad across all projects.</span></div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Team Morale Overview</strong><br><span style="color:#4a5568;">Doughnut — distribution of Good / Okay / Low morale ratings across all projects.</span></div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;grid-column:1/-1;"><strong style="color:var(--navy);">Attrition Risk Heatmap</strong><br><span style="color:#4a5568;">Bar chart — count of projects at each attrition risk level (None / Low / Medium / High). High-risk projects highlighted in red.</span></div>
-        </div>
+        <div class="clbl" style="margin-bottom:10px;">Escalation Watchlist</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Every project reporting an active client escalation this month, with the issue and the action the PM has taken. Click a card to open the PGR. An empty list is a good thing — no escalations.</span></div>
       </div>
 
-      <!-- Deliverable Completion by Project -->
-      <div style="margin-top:22px;">
-        <div class="clbl" style="margin-bottom:12px;">Deliverable Completion by Project</div>
-        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Horizontal bar chart showing each project&rsquo;s deliverable completion % for the month.</span></div>
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
-            <div><strong style="color:var(--navy);">Calculation</strong><br><span style="color:#4a5568;">Deliverables Completed &divide; Total Planned &times; 100. Entered by the PM in the Deliverables tab of the review form.</span></div>
-            <div><strong style="color:var(--navy);">Colour thresholds</strong><br><ul style="font-size:12px;color:#4a5568;padding-left:16px;line-height:1.8;margin:0;"><li><span style="color:#10b981;font-weight:700;">&ge;80%</span> — On track (green)</li><li><span style="color:#f59e0b;font-weight:700;">50–79%</span> — Partial (amber)</li><li><span style="color:#ef4444;font-weight:700;">&lt;50%</span> — Behind (red)</li></ul></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Financial Performance -->
+      <!-- Risk Flags -->
       <div style="margin-top:18px;">
-        <div class="clbl" style="margin-bottom:10px;">Financial Performance</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;">
-            <div class="clbl" style="margin-bottom:8px;">Collection Rate Gauge</div>
-            <p style="font-size:12.5px;color:#4a5568;margin-bottom:8px;">Semicircle gauge showing how much of the FY Contracted value has been received as payment.</p>
-            <ul style="font-size:12px;color:#4a5568;padding-left:16px;line-height:1.8;">
-              <li><span style="color:#10b981;font-weight:700;">≥ 70%</span> — On Track (green)</li>
-              <li><span style="color:#f59e0b;font-weight:700;">40–69%</span> — Moderate (amber)</li>
-              <li><span style="color:#ef4444;font-weight:700;">&lt; 40%</span> — Below Target (red)</li>
-            </ul>
-            <p style="font-size:11.5px;color:#6b7280;margin-top:8px;">Below the gauge: FY Contracted total and FY Received total across all your projects.</p>
-          </div>
-          <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;">
-            <div class="clbl" style="margin-bottom:8px;">Profitability per Project</div>
-            <p style="font-size:12.5px;color:#4a5568;margin-bottom:8px;">Dual horizontal bar per project — Contract Value (blue) vs Hours Cost (orange).</p>
-            <ul style="font-size:12px;color:#4a5568;padding-left:16px;line-height:1.8;">
-              <li><span style="color:#10b981;font-weight:700;">▲ amount</span> — Project is profitable</li>
-              <li><span style="color:#ef4444;font-weight:700;">▼ amount</span> — Hours cost exceeds contract</li>
-            </ul>
-            <p style="font-size:11.5px;color:#6b7280;margin-top:8px;">Sorted highest profitability first. Only projects with contract or hours data appear.</p>
-          </div>
-        </div>
+        <div class="clbl" style="margin-bottom:10px;">Risk Flags</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Two compliance / relationship risks pulled from the form: <strong>AI data risk</strong> (sensitive data shared with AI — red = without approval, amber = with approval) and <strong>stale client contact</strong> (no interaction in over a month).</span></div>
       </div>
 
-      <div class="cl warn" style="margin-top:14px;"><span class="cl-i">⚠️</span><span><strong>Submitted reviews only.</strong> All sections above — KPI cards, Project Cards, Financial Performance charts, and Project Intelligence table — reflect only submitted reviews. Saved drafts are invisible to the dashboard.</span></div>
+      <!-- Resource Demand -->
+      <div style="margin-top:18px;">
+        <div class="clbl" style="margin-bottom:10px;">Resource Demand</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Roles requested across all projects this month, each shown with the <strong>projects asking for it</strong>. An &ldquo;Other&rdquo; request shows the exact role the PM typed in (e.g. &ldquo;DevOps Engineer&rdquo;), not a generic bucket. Helps Ops plan staffing.</span></div>
+      </div>
 
-      <!-- Project Intelligence table -->
+      <!-- AMC Enhancement Pipeline -->
+      <div style="margin-top:18px;">
+        <div class="clbl" style="margin-bottom:10px;">AMC Enhancement Pipeline</div>
+        <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>Projects in Post Go-Live / Under-AMC whose client has asked for an enhancement this month — a ready shortlist of upsell / change-request opportunities.</span></div>
+      </div>
+
+      <!-- AI Adoption -->
       <div style="margin-top:22px;">
-        <div class="clbl" style="margin-bottom:12px;">Project Intelligence Workspace</div>
-        <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">ℹ️</span><span>This table lists every project with a submitted review. Each row shows live metrics pulled from the latest submitted review for that project.</span></div>
-        <div style="overflow-x:auto;">
-          <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
-            <thead>
-              <tr style="background:#f7fafc;text-transform:uppercase;font-size:10px;letter-spacing:.6px;color:var(--gray);">
-                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Project</th>
-                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Health</th>
-                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Status</th>
-                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Escalation</th>
-                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">SETU</th>
-                <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">PM</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:9px 12px;font-weight:600;color:var(--navy);">QSure</td>
-                <td style="padding:9px 12px;"><span style="background:#c6f6d5;color:#276749;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">88</span></td>
-                <td style="padding:9px 12px;color:#276749;font-weight:600;">On Track</td>
-                <td style="padding:9px 12px;"><span style="background:#c6f6d5;color:#276749;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">No</span></td>
-                <td style="padding:9px 12px;color:#276749;font-weight:600;">&#10003; 9/9</td>
-                <td style="padding:9px 12px;color:#4a5568;">Priya S.</td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--border);background:#fafafa;">
-                <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Samarth Agri</td>
-                <td style="padding:9px 12px;"><span style="background:#fed7d7;color:#9b2c2c;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">21</span></td>
-                <td style="padding:9px 12px;color:#e53e3e;font-weight:600;">Critical</td>
-                <td style="padding:9px 12px;"><span style="background:#fed7d7;color:#9b2c2c;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">Yes</span></td>
-                <td style="padding:9px 12px;color:#d69e2e;font-weight:600;">&#10003; 5/9</td>
-                <td style="padding:9px 12px;color:#4a5568;">Karan M.</td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:9px 12px;font-weight:600;color:var(--navy);">mGrant v4 <span style="font-size:10px;background:#ebf4ff;color:#2b6cb0;border-radius:3px;padding:1px 5px;font-weight:600;margin-left:4px;">Product</span></td>
-                <td style="padding:9px 12px;"><span style="background:#c6f6d5;color:#276749;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">76</span></td>
-                <td style="padding:9px 12px;color:#276749;font-weight:600;">On Track</td>
-                <td style="padding:9px 12px;"><span style="background:#c6f6d5;color:#276749;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">No</span></td>
-                <td style="padding:9px 12px;color:#276749;font-weight:600;">&#10003; 4/4</td>
-                <td style="padding:9px 12px;color:#4a5568;">Ankit J.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div style="margin-top:12px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;">
-          <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4a5568;">
-            <span style="background:#fed7d7;color:#9b2c2c;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">Yes</span>
-            <span>= Client escalation active</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4a5568;">
-            <span style="background:#c6f6d5;color:#276749;border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;">No</span>
-            <span>= No escalation</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4a5568;">
-            <span style="font-weight:700;color:#276749;">&#10003; 9/9</span>
-            <span>= Service project SETU (9 fields)</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4a5568;">
-            <span style="font-weight:700;color:#276749;">&#10003; 4/4</span>
-            <span>= Product project SETU (MGRANT / MFORM cost centres, 4 fields)</span>
-          </div>
+        <div class="clbl" style="margin-bottom:12px;">AI Adoption</div>
+        <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">ℹ️</span><span>The portfolio&rsquo;s AI story in one block, replacing the old standalone charts.</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12.5px;">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Maturity Split (L0–L3)</strong><br><span style="color:#4a5568;">A proportion bar showing how projects distribute across Level 0 (none) → Level 3 (advanced &amp; responsible).</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;"><strong style="color:var(--navy);">Governance Flags</strong><br><span style="color:#4a5568;">Projects sharing sensitive data with AI, or rarely reviewing AI-generated code before commit.</span></div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;grid-column:1/-1;"><strong style="color:var(--navy);">Improvement Opportunity</strong><br><span style="color:#4a5568;">Projects where the PM or team said they can do more with AI — your shortlist for the AI push. Click a project to open its PGR.</span></div>
         </div>
       </div>
 
-      <div class="cl info" style="margin-top:18px;"><span class="cl-i">&#128274;</span><span><strong>Permission isolation:</strong> You only see your own projects. Each PM's dashboard is scoped to their own submitted reviews — you cannot view another PM's project data, and they cannot view yours.</span></div>
+      <div class="cl warn" style="margin-top:18px;"><span class="cl-i">⚠️</span><span><strong>Submitted reviews only.</strong> Every section on this dashboard reflects only <em>submitted</em> reviews for the selected month. Saved drafts are invisible to the dashboard until submitted.</span></div>
+
+      <div class="cl info" style="margin-top:14px;"><span class="cl-i">&#128274;</span><span><strong>Permission isolation:</strong> PMs see only their own projects; Projects Managers / System Managers see the whole portfolio and the aggregate cards. One PM cannot view another PM&rsquo;s project data.</span></div>
+
     </div>
 
     <!-- ── P2: THE FORM (all 6 tabs inline) ── -->
@@ -606,13 +528,22 @@ body{font-family:'Poppins',sans-serif;
       <div class="ph">
         <div class="ph-eye">The Form</div>
         <div class="ph-title">Filling the Form</div>
-        <div class="ph-sub">Go to <strong>Project Governance Review → New</strong>. Fill all 6 tabs in order. Click a tab below to see its fields.</div>
+        <div class="ph-sub">Go to <strong>Project Governance Review → New</strong>. Six tabs. Most fields auto-fill from your project — you mainly set the Phase and the narrative fields.</div>
       </div>
-      <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">💡</span><span>Most fields are <strong>auto-populated</strong> from your project records — just verify and fill the narrative fields.</span></div>
+      <div class="cl info" style="margin-bottom:14px;"><span class="cl-i">💡</span><span>Many fields are <strong>auto-populated</strong> from your project records — just verify them and fill the judgement fields.</span></div>
+
+      <!-- Project Phase — the big concept -->
+      <div class="cl warn" style="margin-bottom:14px;"><span class="cl-i">🧭</span><span><strong>Start with Project Phase.</strong> The very first thing you choose (on the Delivery tab) is the project&rsquo;s <strong>Phase</strong>. It controls which questions you&rsquo;re asked — the form hides anything that doesn&rsquo;t apply yet, so you never fill irrelevant fields.</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;margin-bottom:16px;">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:11px;"><strong style="color:var(--navy);">Requirement Gathering</strong><br><span style="color:#4a5568;">Earliest stage — schedule, deliverables, AI, client perception &amp; team questions are hidden.</span></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:11px;"><strong style="color:var(--navy);">Development Phase</strong><br><span style="color:#4a5568;">Full form — every section applies.</span></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:11px;"><strong style="color:var(--navy);">Go-Live Prep</strong><br><span style="color:#4a5568;">Full form — every section applies.</span></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:11px;"><strong style="color:var(--navy);">Post Go-Live</strong><br><span style="color:#4a5568;">Pick <strong>AMC Status</strong>. <em>Under AMC</em> hides the AI tab, deliverables &amp; scope and asks &ldquo;Any Enhancement Request?&rdquo;.</span></div>
+      </div>
 
       <div class="form-bar">
-        <div><div class="fb-title">Project Governance Review — April 2026</div><div class="fb-sub">New Form</div></div>
-        <span class="hbadge">🟢 Health: 88</span>
+        <div><div class="fb-title">Project Governance Review — June 2026</div><div class="fb-sub">New Form</div></div>
+        <span class="hbadge">🟢 Health: 82</span>
       </div>
 
       <!-- Internal tab switcher -->
@@ -621,77 +552,80 @@ body{font-family:'Poppins',sans-serif;
         <span class="tp" onclick="showFTab(1,this)">2 · Delivery</span>
         <span class="tp" onclick="showFTab(2,this)">3 · SETU</span>
         <span class="tp" onclick="showFTab(3,this)">4 · AI</span>
-        <span class="tp" onclick="showFTab(4,this)">5 · Client</span>
+        <span class="tp" onclick="showFTab(4,this)">5 · Client &amp; Team</span>
         <span class="tp" onclick="showFTab(5,this)">6 · Assessment</span>
       </div>
 
       <div class="ftab active" id="ft0">
-        <div class="tab-intro-box">Basic project snapshot. Most fields auto-fill from your project record — just verify before moving on.</div>
+        <div class="tab-intro-box">Project snapshot. Almost everything here auto-fills — just verify before moving on.</div>
         <div class="fr"><div class="fd"></div><div class="fn">Project</div><div class="fx">Select your project — links this review to the project record</div></div>
         <div class="fr"><div class="fd"></div><div class="fn">Review Month / Year</div><div class="fx">Auto-filled to current month <span class="atag">auto</span> — change only for back-dated entries</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Project Status</div><div class="fx"><strong>On Track</strong> / <strong>At Risk</strong> / <strong>Critical</strong> / <strong>On Hold</strong></div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">% Work Done</div><div class="fx">Overall project completion percentage</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Budget &amp; FY Revenue</div><div class="fx">Auto-populated <span class="atag">auto</span> — adjust only if figures have changed</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Tech Lead / Team</div><div class="fx">Auto-populated <span class="atag">auto</span> — verify the names are correct</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Dhwani POC / Tech Lead / Expiry</div><div class="fx">Auto-populated from the project <span class="atag">auto</span> — verify</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Team &amp; Financial Snapshot</div><div class="fx">Team members, submitted hours, FY contracted / invoiced / received, collection rate — all auto <span class="atag">auto</span></div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Profitability</div><div class="fx">Contract value, hours cost and profitability — calculated for you <span class="atag">auto</span></div></div>
       </div>
       <div class="ftab" id="ft1">
-        <div class="tab-intro-box">What got done and what's at risk. Write in plain language — this is what leadership reads.</div>
-        <div class="fr"><div class="fd"></div><div class="fn">Work Done This Month</div><div class="fx">Brief description of deliverables — 2–3 sentences</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Planned vs Actual</div><div class="fx">Are you on schedule? Describe any gaps</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Schedule Confidence</div><div class="fx">High / Medium / Low — how confident about upcoming timelines</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Key Risks</div><div class="fx">Active risks the project is facing</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Upcoming Milestones</div><div class="fx">Major deliverables or deadlines next month</div></div>
+        <div class="tab-intro-box">Phase, schedule and deliverables. <strong>Set the Phase first</strong> — it decides what the rest of the form asks.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">Project Phase</div><div class="fx">Requirement Gathering / Development / Go-Live Prep / Post Go-Live</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AMC Status</div><div class="fx">Appears for <strong>Post Go-Live</strong> — Not Under AMC / Under AMC</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Scheduled deliverables on track</div><div class="fx"><strong>On Track</strong> / <strong>At Risk</strong> / <strong>Delayed</strong></div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Scope Changes this Month</div><div class="fx">None / Minor / Major</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Deliverables table</div><div class="fx">Web &amp; Dashboard, Mobile App, User Guide, Technical Docs, External API — <strong>delete rows that don&rsquo;t apply</strong>, set % complete on the rest</div></div>
+        <div class="cl info"><span class="cl-i">ℹ️</span><span>The whole Delivery section is hidden in <strong>Requirement Gathering</strong> and for <strong>Post Go-Live / Under AMC</strong> projects.</span></div>
       </div>
       <div class="ftab" id="ft2">
-        <div class="tab-intro-box">Internal process compliance checklist. Answer each item <strong>Yes / No / NA</strong>. Compliance % is calculated automatically. The number of fields you see depends on your project type.</div>
-        <div class="fr"><div class="fd"></div><div class="fn">SETU Checklist Items</div><div class="fx">Yes = compliant, No = not compliant, NA = doesn't apply to this project</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">SETU Compliance %</div><div class="fx">Calculated from your Yes / No answers <span class="atag">auto</span></div></div>
-        <div class="cl warn"><span class="cl-i">⚠️</span><span>NA is not the same as No — marking NA does not hurt your compliance score.</span></div>
-        <!-- SETU type breakdown -->
+        <div class="tab-intro-box">Internal process-compliance checklist. Compliance % is calculated automatically. The number of items depends on your project type and phase.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">SETU Checkpoints</div><div class="fx">Answer Yes / No. <strong>Steerco</strong> is Regular / Irregular / No Steerco.</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">SETU Compliance %</div><div class="fx">Applicable &ldquo;Yes&rdquo; items ÷ applicable items × 100 <span class="atag">auto</span></div></div>
         <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
           <div style="background:#f7fafc;border:1px solid var(--border);border-radius:8px;padding:13px 15px;">
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--gray);margin-bottom:8px;">Service Projects</div>
             <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px;">9 SETU Fields</div>
-            <div style="font-size:11.5px;color:#4a5568;line-height:1.7;">
-              Kickoff &nbsp;&bull;&nbsp; Stakeholder Mapping &nbsp;&bull;&nbsp; Solution Doc &nbsp;&bull;&nbsp; Risk Register &nbsp;&bull;&nbsp; Project Plan &nbsp;&bull;&nbsp; Support Desk &nbsp;&bull;&nbsp; Go-Live Checklist &nbsp;&bull;&nbsp; Satisfaction Survey &nbsp;&bull;&nbsp; Steerco
-            </div>
-            <div style="margin-top:8px;font-size:11px;color:var(--gray);">Dashboard shows e.g. <strong style="color:#276749;">&#10003; 7/9</strong></div>
+            <div style="font-size:11.5px;color:#4a5568;line-height:1.7;">Kickoff &nbsp;&bull;&nbsp; Stakeholder Mapping &nbsp;&bull;&nbsp; Solution Doc &nbsp;&bull;&nbsp; Risk Register &nbsp;&bull;&nbsp; Project Plan &nbsp;&bull;&nbsp; Support Desk &nbsp;&bull;&nbsp; Go-Live Checklist &nbsp;&bull;&nbsp; Satisfaction Survey &nbsp;&bull;&nbsp; Steerco</div>
           </div>
           <div style="background:#ebf4ff;border:1px solid #bee3f8;border-radius:8px;padding:13px 15px;">
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#2b6cb0;margin-bottom:8px;">Product Projects <span style="font-size:9px;">(MGRANT / MFORM cost centres)</span></div>
             <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px;">4 SETU Fields</div>
-            <div style="font-size:11.5px;color:#4a5568;line-height:1.7;">
-              Steerco &nbsp;&bull;&nbsp; Risk Register &nbsp;&bull;&nbsp; Project Plan &nbsp;&bull;&nbsp; Support Desk
-            </div>
-            <div style="margin-top:8px;font-size:11px;color:var(--gray);">Dashboard shows e.g. <strong style="color:#276749;">&#10003; 4/4</strong></div>
+            <div style="font-size:11.5px;color:#4a5568;line-height:1.7;">Steerco &nbsp;&bull;&nbsp; Risk Register &nbsp;&bull;&nbsp; Project Plan &nbsp;&bull;&nbsp; Support Desk</div>
           </div>
         </div>
+        <div class="cl info" style="margin-top:12px;"><span class="cl-i">ℹ️</span><span>Checkpoints hidden by your phase are excluded from the denominator — your % only counts what you were actually asked.</span></div>
       </div>
       <div class="ftab" id="ft3">
-        <div class="tab-intro-box">AI tool usage on your project. <strong>AI Maturity Level</strong> (1–5) is calculated automatically.</div>
-        <div class="fr"><div class="fd"></div><div class="fn">AI Tools Used by PM</div><div class="fx">e.g. Claude, ChatGPT, Cursor, Copilot</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">AI Tools Used by Team</div><div class="fx">Tools the delivery team uses regularly</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">% of Team Using AI</div><div class="fx">Select closest bracket — 0–25%, 25–50%, 50–75%, 75–100%</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">AI Used For</div><div class="fx">Code Generation, Documentation, Testing, Analysis, etc.</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">AI Impact Rating</div><div class="fx">1 (no impact) to 5 (significant impact)</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">AI Maturity Level</div><div class="fx">Derived from your answers above <span class="atag">auto</span></div></div>
+        <div class="tab-intro-box">AI usage and responsible-use practices. <strong>AI Maturity Level (0–3)</strong> is calculated automatically. This whole tab is hidden for Requirement Gathering and Post Go-Live / Under-AMC projects.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Tools — PM &amp; Team</div><div class="fx">e.g. Claude, ChatGPT, Cursor, Copilot, Gemini</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">% of Team Using AI</div><div class="fx">0% / 25% / 50% / 75% / 100%</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Used For</div><div class="fx">Code Generation, Code Review, Documentation, Testing, etc.</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Effectiveness / Code Quality / Adoption Effort</div><div class="fx">1–5 star ratings</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Code Reviewed Before Commit?</div><div class="fx">Always / Sometimes / Rarely</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Sensitive Data Shared with AI?</div><div class="fx">No / Yes, with approval / Yes, without approval</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Can you / your team improve via better AI use?</div><div class="fx">Yes / No — feeds the dashboard&rsquo;s Improvement Opportunity list</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI SDLC Enabled?</div><div class="fx">Yes / No — if No, give a reason and a target date</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">AI Maturity Level</div><div class="fx">Level 0–3, derived from the answers above <span class="atag">auto</span></div></div>
+        <div class="cl warn"><span class="cl-i">⚠️</span><span>Sharing sensitive data with AI <strong>without approval</strong> caps your AI maturity at Level 1, however good the other answers are.</span></div>
       </div>
       <div class="ftab" id="ft4">
         <div class="tab-intro-box">Client relationship and team health. Be honest — this is how leadership decides where to send support.</div>
-        <div class="fr"><div class="fd"></div><div class="fn">Client Satisfaction</div><div class="fx">1 (very dissatisfied) to 5 (very satisfied)</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Client Escalation</div><div class="fx">Yes or No — <strong>if Yes</strong>, two additional fields become required: <em>Escalation Details</em> and <em>Action Taken</em></div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Attrition Risk</div><div class="fx">None / Low / Medium / High — <strong>if not None</strong>, the <em>Attrition Details</em> field is required</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Resource Requirement</div><div class="fx">Yes or No — <strong>if Yes</strong>, at least one Resource Type must be selected; if "Others" is ticked, the Others text field is also required</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Team Morale</div><div class="fx">High / Medium / Low</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Team Challenges</div><div class="fx">Blockers, capacity issues, or concerns</div></div>
-        <div class="cl info"><span class="cl-i">ℹ️</span><span>The conditional fields above (Escalation Details, Action Taken, Attrition Details, Resource Type) are hidden until you set the parent field to Yes / not-None. They will be checked at submission time.</span></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Client Nature</div><div class="fx">Easy to Handle / Average / Tough to Handle</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Client Perception</div><div class="fx">Good / Average / Not Sure / Bad</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Any Escalation from Client?</div><div class="fx">Yes / No — <strong>if Yes</strong>, Escalation Details and Action Taken become required</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Open Critical / Show-Stopper Bugs</div><div class="fx">How many are currently open — feeds the dashboard&rsquo;s Open Critical Bugs and the health score</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Bug Tracker</div><div class="fx">Do you have one, and which (Sheet / Excel / Software / Help Desk)</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Last Interaction with Client</div><div class="fx">&lt;7 days / 7–15 / 15–30 / More than a month (flags on the dashboard)</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Any Enhancement Request?</div><div class="fx">Asked for <strong>Post Go-Live / Under AMC</strong> — feeds the AMC Enhancement Pipeline</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Team Morale</div><div class="fx">Good / Okay / Low</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Attrition Risk</div><div class="fx">None / Low / High — <strong>if High</strong>, Attrition Details is required</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Resource Requirement?</div><div class="fx">Yes / No — <strong>if Yes</strong>, tick the roles needed; for &ldquo;Others&rdquo; type the exact role (it shows by name on the dashboard)</div></div>
+        <div class="cl info"><span class="cl-i">ℹ️</span><span>Conditional fields stay hidden until you set the parent answer, and are checked at submission time.</span></div>
       </div>
       <div class="ftab" id="ft5">
-        <div class="tab-intro-box">Your overall read of the month. The most-read section after the health score.</div>
-        <div class="fr"><div class="fd"></div><div class="fn">Key Achievements</div><div class="fx">Wins, milestones hit, positive feedback this month</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">Action Items</div><div class="fx">What needs to happen next month</div></div>
-        <div class="fr"><div class="fd"></div><div class="fn">PM Notes</div><div class="fx">Anything else leadership should know</div></div>
+        <div class="tab-intro-box">Your overall read of the month — the most-read section after the health score.</div>
+        <div class="fr"><div class="fd"></div><div class="fn">Overall Status of Project</div><div class="fx">On Track / Needs Attention / At Risk / Critical / On Hold / Closed</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Top Risk This Month</div><div class="fx">The single biggest risk right now</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Review Meeting Points / Actionable</div><div class="fx">Decisions and next steps leadership should know</div></div>
+        <div class="fr"><div class="fd"></div><div class="fn">Health Score</div><div class="fx">Calculated from the whole form <span class="atag">auto</span> — see the Health Score section</div></div>
       </div>
+
     </div>
 
     <!-- ── P3: HEALTH SCORE ── -->
@@ -699,14 +633,39 @@ body{font-family:'Poppins',sans-serif;
       <div class="ph">
         <div class="ph-eye">Understanding</div>
         <div class="ph-title">Health Score</div>
-        <div class="ph-sub">Calculated automatically on save. Shown as a badge at the top of the form. <strong>You cannot edit it</strong> — it reflects your inputs honestly.</div>
+        <div class="ph-sub">Calculated automatically on save. Shown as a badge on the form and in the dashboard Matrix. <strong>You cannot edit it</strong> — it reflects your inputs honestly.</div>
       </div>
       <div class="score3">
-        <div class="sc g"><div class="sr">75–100</div><div class="sl">🟢 Healthy</div><div class="sd">Project is on track. Keep going.</div></div>
-        <div class="sc y"><div class="sr">50–74</div><div class="sl">🟡 At Risk</div><div class="sd">Some areas need attention. Review with your manager.</div></div>
-        <div class="sc r"><div class="sr">0–49</div><div class="sl">🔴 Critical</div><div class="sd">Immediate action required. Escalates to leadership.</div></div>
+        <div class="sc g"><div class="sr">70–100</div><div class="sl">🟢 Healthy</div><div class="sd">Project is on track. Keep going.</div></div>
+        <div class="sc y"><div class="sr">40–69</div><div class="sl">🟡 At Risk</div><div class="sd">Some areas need attention. Review with your manager.</div></div>
+        <div class="sc r"><div class="sr">0–39</div><div class="sl">🔴 Critical</div><div class="sd">Immediate action required. Escalates to leadership.</div></div>
       </div>
-      <div class="cl info"><span class="cl-i">ℹ️</span><span>Score is derived from Project Status, Schedule Confidence, Client Satisfaction, SETU Compliance, and Team Morale. Fill all fields honestly for an accurate score.</span></div>
+
+      <div class="clbl" style="margin-top:20px;margin-bottom:10px;">How the score is built</div>
+      <div class="cl info" style="margin-bottom:12px;"><span class="cl-i">ℹ️</span><span>The score is a weighted blend of the inputs below. It is <strong>phase-aware</strong> — inputs that aren&rsquo;t asked in your project&rsquo;s phase are dropped and the remaining weights are rescaled to 100, so an early-stage or AMC project is never unfairly capped.</span></div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+          <thead>
+            <tr style="background:#f7fafc;text-transform:uppercase;font-size:10px;letter-spacing:.6px;color:var(--gray);">
+              <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Input</th>
+              <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Weight</th>
+              <th style="padding:9px 12px;text-align:left;border-bottom:2px solid var(--border);font-weight:700;">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Schedule confidence</td><td style="padding:9px 12px;font-weight:700;">20%</td><td style="padding:9px 12px;color:#4a5568;">On Track / At Risk / Delayed.</td></tr>
+            <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Client perception</td><td style="padding:9px 12px;font-weight:700;">15%</td><td style="padding:9px 12px;color:#4a5568;">Good / Average / Not Sure / Bad.</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">SETU compliance</td><td style="padding:9px 12px;font-weight:700;">15%</td><td style="padding:9px 12px;color:#4a5568;">Your process-compliance %.</td></tr>
+            <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Open critical bugs</td><td style="padding:9px 12px;font-weight:700;">10%</td><td style="padding:9px 12px;color:#4a5568;"><strong>New.</strong> 0 bugs = full marks; 3+ = zero.</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Active client escalation</td><td style="padding:9px 12px;font-weight:700;">10%</td><td style="padding:9px 12px;color:#4a5568;"><strong>New.</strong> An open escalation pulls the score down.</td></tr>
+            <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">AI maturity</td><td style="padding:9px 12px;font-weight:700;">10%</td><td style="padding:9px 12px;color:#4a5568;">Level 0–3 (see AI Adoption).</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Team morale</td><td style="padding:9px 12px;font-weight:700;">10%</td><td style="padding:9px 12px;color:#4a5568;">Good / Okay / Low.</td></tr>
+            <tr style="border-bottom:1px solid var(--border);background:#fafafa;"><td style="padding:9px 12px;font-weight:600;color:var(--navy);">Attrition risk</td><td style="padding:9px 12px;font-weight:700;">10%</td><td style="padding:9px 12px;color:#4a5568;">None / Low / High.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cl info" style="margin-top:14px;"><span class="cl-i">ℹ️</span><span><strong>What changed:</strong> open critical bugs and an active escalation now affect the score directly — a project can&rsquo;t look green while it&rsquo;s shipping show-stopper bugs or has an unhappy client. <strong>Collection Rate was removed</strong> from the score (it penalised projects that simply had no contract data) and is now shown on its own in the dashboard Matrix.</span></div>
+
     </div>
 
     <!-- ── P4: SUBMITTING ── -->
@@ -714,34 +673,40 @@ body{font-family:'Poppins',sans-serif;
       <div class="ph">
         <div class="ph-eye">Final Step</div>
         <div class="ph-title">Submitting</div>
-        <div class="ph-sub">Once all 6 tabs are filled, submit to lock the review and publish to the leadership dashboard.</div>
+        <div class="ph-sub">Once the form is filled, submit to lock the review and publish it to the leadership dashboard.</div>
       </div>
       <div class="steps">
-        <div class="sr-row"><div class="sl-l"><div class="snum">1</div><div class="sline"></div></div><div class="sb2"><strong>Save</strong> at any point — stores a draft, not visible on dashboard yet</div></div>
+        <div class="sr-row"><div class="sl-l"><div class="snum">1</div><div class="sline"></div></div><div class="sb2"><strong>Save</strong> at any point — stores a draft, not visible on the dashboard yet. You can fill the form over several sittings.</div></div>
         <div class="sr-row"><div class="sl-l"><div class="snum">2</div><div class="sline"></div></div><div class="sb2">Review all <strong>6 tabs</strong> and verify everything looks accurate</div></div>
-        <div class="sr-row"><div class="sl-l"><div class="snum">3</div><div class="sline"></div></div><div class="sb2">Click <strong>Submit</strong> — the system runs validation checks (see below), then locks the review and publishes it to the dashboard immediately</div></div>
+        <div class="sr-row"><div class="sl-l"><div class="snum">3</div><div class="sline"></div></div><div class="sb2">Click <strong>Submit</strong> — the system runs validation (see below), then locks the review and publishes it to the dashboard immediately</div></div>
         <div class="sr-row"><div class="sl-l"><div class="snum">4</div><div class="sline"></div></div><div class="sb2">Your <strong>reporting manager</strong> is notified for sign-off</div></div>
       </div>
 
+      <div class="cl info" style="margin-top:16px;"><span class="cl-i">🧭</span><span><strong>Validation is phase-aware.</strong> You&rsquo;re only required to complete the fields your project&rsquo;s Phase actually asks — a Requirement-Gathering or Post-Go-Live/Under-AMC review needs far fewer. If anything required is missing, the form lists exactly what to fill before it will submit.</span></div>
+
       <!-- Submit validation rules -->
-      <div style="margin-top:18px;background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:16px 18px;">
-        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--gray);margin-bottom:12px;">Validation checks run at submission</div>
+      <div style="margin-top:14px;background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:16px 18px;">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--gray);margin-bottom:12px;">Conditional checks run at submission</div>
         <div style="font-size:12.5px;color:#4a5568;line-height:1;margin-bottom:0;">
           <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);">
             <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span>
-            <div><strong style="color:var(--navy);">Deliverables</strong> — at least one deliverable row must have <em>Applicable</em> set to <strong>Yes</strong>. A review with all deliverables marked N/A will not submit.</div>
+            <div><strong style="color:var(--navy);">Deliverables</strong> — at least one deliverable row must remain in the table. (Skipped entirely in Requirement Gathering and Post-Go-Live / Under-AMC, where deliverables aren&rsquo;t asked.)</div>
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);">
             <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span>
-            <div><strong style="color:var(--navy);">Client Escalation = Yes</strong> — both <em>Escalation Details</em> and <em>Action Taken</em> fields must be filled before the form will submit.</div>
+            <div><strong style="color:var(--navy);">Client Escalation = Yes</strong> — both <em>Escalation Details</em> and <em>Action Taken</em> must be filled.</div>
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);">
             <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span>
-            <div><strong style="color:var(--navy);">Attrition Risk &ne; None</strong> — the <em>Attrition Details</em> field must be filled if you have flagged any level of attrition risk.</div>
+            <div><strong style="color:var(--navy);">Attrition Risk = High</strong> — the <em>Attrition Details</em> field must be filled.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);">
+            <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</span>
+            <div><strong style="color:var(--navy);">Resource Requirement = Yes</strong> — at least one Resource Type must be selected. If you tick <em>Others</em>, the Others text field must also be filled.</div>
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;">
-            <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</span>
-            <div><strong style="color:var(--navy);">Resource Requirement = Yes</strong> — at least one Resource Type must be selected. If you tick <em>Others</em>, the Others text field must also be filled in.</div>
+            <span style="width:20px;height:20px;min-width:20px;background:var(--blue);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">5</span>
+            <div><strong style="color:var(--navy);">AI SDLC = No</strong> — give a reason and a future target date for enabling it.</div>
           </div>
         </div>
       </div>
@@ -753,6 +718,7 @@ body{font-family:'Poppins',sans-serif;
         <div style="font-size:11px;color:var(--gray);margin-bottom:3px;">Need help?</div>
         <div style="font-size:13px;color:var(--navy);font-weight:700;"><strong>Ankit Jangir</strong> (IT) &nbsp;·&nbsp; <strong>Ravi Jangir</strong> (Operations)</div>
       </div>
+
     </div>
 
     <!-- ── P5: NON-NEGOTIABLES ── -->
